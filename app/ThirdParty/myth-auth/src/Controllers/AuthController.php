@@ -4,6 +4,7 @@ use Config\Email;
 use CodeIgniter\Controller;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
+use App\Models\ProfileModel;
 
 class AuthController extends Controller
 {
@@ -153,6 +154,15 @@ class AuthController extends Controller
 			'email'			=> 'required|valid_email|is_unique[users.email]',
 			'password'	 	=> 'required|strong_password',
 			'pass_confirm' 	=> 'required|matches[password]',
+			'role' 	=> 'required',
+		];
+		$errors = [
+			'pass_confirm' 	=> [
+				'matches' => 'Password did not match.'
+			],
+			'role' 	=> [
+				'required' => 'User role is required.'
+			]
 		];
 
 		if (! $this->validate($rules))
@@ -160,6 +170,7 @@ class AuthController extends Controller
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
 
+		$users = model(UserModel::class)->withGroup($this->request->getVar('role'));
 		// Save the user
 		$allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
 		$user = new User($this->request->getPost($allowedPostFields));
@@ -186,13 +197,20 @@ class AuthController extends Controller
 				return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
 			}
 
+			$db = db_connect(); 
+			$query = $db->query("SELECT * FROM users");
+			$row = $query->getLastRow();
+			$user_profile = new ProfileModel;
+			$user_profile->save(['user_id' => $row->id]);
+
 			// Success!
-			return redirect()->route('login')->with('message', lang('Auth.activationSuccess'));
+			return redirect()->back()->with('message', lang('Auth.activationSuccess'));
 		}
 
 		// Success!
-		return redirect()->route('login')->with('message', lang('Auth.registerSuccess'));
+		return redirect()->back()->with('message', lang('Auth.registerSuccess'));
 	}
+
 
 	//--------------------------------------------------------------------
 	// Forgot Password

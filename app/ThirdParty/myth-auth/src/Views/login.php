@@ -19,12 +19,12 @@
 					
 					<div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" name="login" type="text" required="" placeholder="<?=lang('Auth.email')?> or Username">
+                            <input class="form-control" name="login" type="text" required="" value="<?= old('login') ?>" placeholder="<?=lang('Auth.email')?> or Username">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" name="password" id="password-field" required="" placeholder="<?= lang('Auth.password')?>">
+                            <input class="form-control" type="password" name="password" id="password-field" required=""  placeholder="<?= lang('Auth.password')?>">
 							<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                     </div>

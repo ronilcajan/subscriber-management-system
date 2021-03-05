@@ -21,7 +21,9 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-$routes->set404Override();
+$routes->set404Override(function(){
+	return view('errors/404');
+});
 $routes->setAutoRoute(true);
 
 /*
@@ -33,8 +35,21 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('admin', 'Home::index');
 $routes->add('success-login', 'Home::home');
 
+
+$routes->group('admin', function($routes) {
+	$routes->add('profile', 'Profile::index');
+
+	$routes->post('user_update', 'Admin\Users::update');
+	$routes->add('user_info/(:num)', 'Admin\Users::user_info/$1');
+
+	$routes->add('new_subscriber', 'Admin\Subscribers::new_subs');
+	$routes->post('add_subs', 'Admin\Subscribers::create');
+	$routes->post('update_profile', 'Profile::update');
+	$routes->post('change_password', 'Profile::changepass');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing

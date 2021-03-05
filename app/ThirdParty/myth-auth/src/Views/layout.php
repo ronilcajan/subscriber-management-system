@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>/plugins/images/favicon.png">
-    <title>Waga Network - CMS</title>
+    <title>WAGANETWORK Solutions - SMS</title>
     <!-- ===== Bootstrap CSS ===== -->
     <link href="<?= site_url() ?>/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- ===== Plugin CSS ===== -->
@@ -60,6 +60,16 @@
 <script src="<?= site_url() ?>/assets/js/custom.js"></script>
 <!--Style Switcher -->
 <script src="<?= site_url() ?>/plugins/components/styleswitcher/jQuery.style.switcher.js"></script>
-<script src="<?= site_url() ?>/assets/js/login.js"></script>
+<script>
+    $(".toggle-password").click(function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+        input.attr("type", "text");
+        } else {
+        input.attr("type", "password");
+        }
+    });
+</script>
 </body>
 </html>

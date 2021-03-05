@@ -23,7 +23,7 @@
             <?= $this->renderSection('content') ?>
             <!-- ===== Page-Container-End ===== -->
             <footer class="footer t-a-c">
-                © <?= date('Y') ?> Subscriber Management System
+                © <?= date('Y') ?> Subscribers Management System
             </footer>
         </div>
         <!-- ===== Page-Content-End ===== -->

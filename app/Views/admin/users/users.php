@@ -4,108 +4,80 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
+            <?= view('Myth\Auth\Views\_message_block') ?>
             <div class="white-box">
-                <h3 class="box-title m-b-0"><?= $title ?></h3>
-                <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
                 <div class="row">
-                    <div class="col-md-8 col-sm-12 text-left">
-                        <button class="btn btn-primary waves-effect waves-light">Download Excel</button>
-                    </div>
-                    <div class="col-md-4 col-sm-12 text-right">
-                        <form role="search" class="app-search w-100">
-                            <i class="icon-magnifier"></i>
-                            <input type="text" placeholder="Search..." class="form-control w-100">
-                        </form>
+                    <div class="col-sm-12" style="relative">
+                        <h4 class="box-title"><?= $title ?></h4>
+                        <div id="adduser">
+                            <button type="button" class="btn btn-primary waves-effect waves-light btn-circle" data-toggle="modal"  data-target="#user-modal" title="Add New User">
+                                <i class="icon-user-follow"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
-                    <thead>
-                        <tr>
-                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Movie Title</th>
-                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3">Rank</th>
-                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Year</th>
-                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">
-                                <abbr title="Rotten Tomato Rating">Rating</abbr>
-                            </th>
-                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Gross</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Avatar</a></td>
-                            <td>1</td>
-                            <td>2009</td>
-                            <td>83%</td>
-                            <td>$2.7B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Titanic</a></td>
-                            <td>2</td>
-                            <td>1997</td>
-                            <td>88%</td>
-                            <td>$2.1B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">The Avengers</a></td>
-                            <td>3</td>
-                            <td>2012</td>
-                            <td>92%</td>
-                            <td>$1.5B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Harry Potter and the Deathly Hallows—Part 2</a></td>
-                            <td>4</td>
-                            <td>2011</td>
-                            <td>96%</td>
-                            <td>$1.3B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Frozen</a></td>
-                            <td>5</td>
-                            <td>2013</td>
-                            <td>89%</td>
-                            <td>$1.2B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Iron Man 3</a></td>
-                            <td>6</td>
-                            <td>2013</td>
-                            <td>78%</td>
-                            <td>$1.2B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Transformers: Dark of the Moon</a></td>
-                            <td>7</td>
-                            <td>2011</td>
-                            <td>36%</td>
-                            <td>$1.1B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">The Lord of the Rings: The Return of the King</a></td>
-                            <td>8</td>
-                            <td>2003</td>
-                            <td>95%</td>
-                            <td>$1.1B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Skyfall</a></td>
-                            <td>9</td>
-                            <td>2012</td>
-                            <td>92%</td>
-                            <td>$1.1B</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><a href="javascript:void(0)">Transformers: Age of Extinction</a></td>
-                            <td>10</td>
-                            <td>2014</td>
-                            <td>18%</td>
-                            <td>$1.0B</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p class="text-muted m-b-20">You can add, edit and delete users here.</p>
+                <div class="table-responsive">
+                    <table  id="userTable" class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if($users): ?>
+                            <?php $no=1; foreach($users as $user): ?>
+                               
+                            <tr>
+                                <td><?= $no ?></td>
+                                <td><a href="<?= site_url('admin/user_info/').$user->id; ?>"><?= $user->username ?></a></td>
+                                <td>
+                                    <a href="<?= site_url('admin/user_info/').$user->id; ?>">
+                                        <?= !empty($user->fullname) ? '<img width="30" src="'.site_url('/uploads/').$user->img.'" alt="user" class="img-circle"> '.$user->fullname : null ?>
+                                    </a>
+                                </td>
+                                <td><a href="tel:09213213"><?= $user->phone ?></a></td>
+                                <td><a href="mailto:ron@gmail.com"><?= $user->email ?></a></td>
+                                <td><span class="label label-success"><?= $user->role ?></span></td>
+                                <td>
+                                    <a class="text-primary waves-effect waves-light tooltip-primary" href="<?= site_url('admin/user_info/').$user->id; ?>" data-toggle="tooltip" title="View User">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <span id="edit-user" data-toggle="modal" data-target="#edit-modal" data-id="<?= $user->id ?>" data-role="<?= $user->role_id ?>" data-email="<?= $user->email ?>" data-username="<?= $user->username ?>">
+                                        <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success" data-toggle="tooltip" title="Edit User">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
+                                    </span>
+                                    <a class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" href="<?= site_url('admin/users/delete/').$user->id; ?>" data-toggle="tooltip" title="Delete User">
+                                        <i class="fa fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php $no++; endforeach ?>
+                            <?php endif ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>No.</th>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr> 
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+<?= $this->include('admin/users/modal') ?>
 <?= $this->endSection() ?>

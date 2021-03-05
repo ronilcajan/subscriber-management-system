@@ -6,7 +6,8 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		return redirect()->to(site_url('login'));;
+		$data['title'] = "Home";
+		return view('home',$data);
 	}
 
 	public function home()

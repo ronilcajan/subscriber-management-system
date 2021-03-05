@@ -6,7 +6,7 @@
         <div class="top-left-part">
             <a class="logo" href="<?= site_url() ?>">
                 <b>
-                    <img src="<?= site_url() ?>images/logo-transparent.png" alt="home" width="50" />
+                    <img src="<?= site_url() ?>images/logo-transparent.png" alt="home" width="40" />
                 </b>
                 <span>
                    <strong class="text-white">Waga Network</strong>

@@ -61,7 +61,7 @@ Version:    1.0
 ============================================================ */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
-@import "/less/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import "/assets/less/icons/material-design-iconic-font/css/materialdesignicons.min.css";
 @import "spinners.css";
 .preloader {
     width: 100%;
@@ -1832,7 +1832,8 @@ pre {
 }
 
 .table-responsive {
-    overflow-y: hidden
+    overflow-y: hidden;
+    padding:5px;
 }
 
 .table-box {
@@ -3972,6 +3973,7 @@ table.focus-on tbody tr.focused th {
     color: #fff;
     overflow: hidden;
     background-color: #282f32
+    
 }
 
 .timeline>li.timeline-inverted>.timeline-panel {
@@ -4331,7 +4333,8 @@ table.focus-on tbody tr.focused th {
 }
 
 .login-register {
-    background: url(../../plugins/images/login-register.jpg) center center/cover no-repeat!important;
+    /* background: url(../../plugins/images/login-register.jpg) center center/cover no-repeat!important; */
+    background-color: #4f5467;
     height: 100%;
     position: fixed
 }
