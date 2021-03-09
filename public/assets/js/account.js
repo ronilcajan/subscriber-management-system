@@ -1,0 +1,3 @@
+$('#accountTable').DataTable({
+    responsive: true
+});

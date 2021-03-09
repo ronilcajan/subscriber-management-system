@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Title  -->
     
-    <title><?= $title ?> | WAGANETWORK Solutions</title>
+    <title><?= $title ?> | Waga Network Solutions</title>
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="home_files/assets/css/bootstrap.min.css" type="text/css">
@@ -64,7 +64,13 @@
                                 <li><a class="scroll-animite" href="#pricing">Pricing</a></li>
                                 <li><a class="scroll-animite" href="#review">Review</a></li>
                                 <li><a class="scroll-animite" href="#contact">Contact</a></li>
-                                <li><a class="scroll-animite" href="<?= site_url() ?>login">Login</a></li>
+                                <li>
+                                    <?php if(logged_in()): ?>
+                                        <a class="scroll-animite" href="<?= site_url('success-login') ?>">Dashboard</a>
+                                    <?php else: ?>
+                                        <a class="scroll-animite" href="<?= site_url('login') ?>">Login</a>
+                                    <?php endif ?>
+                                </li>
                             </ul>
                         </div>
                         <div class="mobile-menu"></div>

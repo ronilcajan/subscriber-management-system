@@ -27,11 +27,31 @@
                                 <th>Email</th>
                                 <th>Address</th>
                                 <th>Status</th>
-                                <th>No. of Accounts</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no=1; foreach($subs as $row):?>
+                            <tr>
+                                <td><?= $no ?></td>
+                                <td><a href="<?= site_url('admin/subscriber_info/').$row['id'] ?>"><?= ucwords($row['name']) ?></a></td>
+                                <td><a href="tel:<?= $row['phone'] ?>"><?= $row['phone'] ?></a></td>
+                                <td><a href="mailto:<?= $row['email'] ?>"><?= $row['email'] ?></a></td>
+                                <td><?= ucwords($row['street'].', '.$row['city'].', '.$row['province']) ?></td>
+                                <td><?= $row['status']=='Active' ? '<span class="label label-success">'.$row['status'].'</span>' : '<span class="label label-danger">'.$row['status'].'</span>' ?></td>
+                                <td>
+                                    <a class="text-primary waves-effect waves-light tooltip-primary m-l-5 m-t-5" href="<?= site_url('admin/subscriber_info/').$row['id']; ?>" data-toggle="tooltip" title="View Subscribers">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success" href="<?= site_url('admin/subscriber/update/').$row['id']; ?>" data-toggle="tooltip" title="Edit Subscribers">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    <a class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" href="<?= site_url('admin/subscriber/delete/').$row['id']; ?>" data-toggle="tooltip" title="Delete Subscribers">
+                                        <i class="fa fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php $no++; endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -41,7 +61,6 @@
                                 <th>Email</th>
                                 <th>Address</th>
                                 <th>Status</th>
-                                <th>No. of Accounts</th>
                                 <th>Action</th>
                             </tr> 
                         </tfoot>

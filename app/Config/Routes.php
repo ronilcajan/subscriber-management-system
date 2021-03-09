@@ -49,6 +49,12 @@ $routes->group('admin', function($routes) {
 	$routes->post('add_subs', 'Admin\Subscribers::create');
 	$routes->post('update_profile', 'Profile::update');
 	$routes->post('change_password', 'Profile::changepass');
+
+	$routes->add('subscriber/delete/(:num)', 'Admin\Subscribers::delete/$1');
+	$routes->add('subscriber/update/(:num)', 'Admin\Subscribers::edit/$1');
+	$routes->post('update_subs', 'Admin\Subscribers::update');
+
+	$routes->add('new_account', 'Admin\Accounts::new_account');
 });
 /*
  * --------------------------------------------------------------------

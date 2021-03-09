@@ -14,7 +14,7 @@ class Users extends BaseController
 		
 		$data['users'] = $users->getAllUsers();
 
-		$data['title'] = "User Management";
+		$data['title'] = "Users";
 		return view('admin/users/users',$data);
 	}
 

@@ -5,7 +5,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>images/logo-transparent.png">
-<title>WAGANETWORK Solutions | <?= $title ?></title>
+<title><?= $title ?> | Waga Network Solutions</title>
 <!-- ===== Bootstrap CSS ===== -->
 <link href="<?= site_url() ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<?= site_url() ?>plugins/components/dropify/dist/css/dropify.min.css" type="text/css">

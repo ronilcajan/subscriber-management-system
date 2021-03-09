@@ -6,7 +6,7 @@ class Payments extends BaseController
 {
 	public function index()
 	{
-		$data['title'] = "Payment Management";
+		$data['title'] = "Payments";
 		return view('admin/payments/payments',$data);
 	}
 

@@ -34,12 +34,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('admin/subscribers') ?>" class="<?= strpos(uri_string(),'new_subscriber') ? 'active' : null ?>" aria-expanded="false">
+                        <a href="<?= site_url('admin/subscribers') ?>" class="<?= strpos(uri_string(),'new_subscriber') || strpos(uri_string(),'subscriber') ? 'active' : null ?>" aria-expanded="false">
                         <i class="icon-people fa-fw"></i> <span class="hide-menu"> Subscribers</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('admin/accounts') ?>" aria-expanded="false">
+                    <a href="<?= site_url('admin/accounts') ?>" class="<?= strpos(uri_string(),'new_account') ? 'active' : null ?>" aria-expanded="false">
                         <i class="icon-user-following fa-fw"></i> <span class="hide-menu"> Accounts</span>
                     </a>
                 </li>

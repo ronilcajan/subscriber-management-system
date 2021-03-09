@@ -28,6 +28,7 @@
 <script src="<?= site_url() ?>plugins/components/dropify/dist/js/dropify.min.js"></script>
 <script src="<?= site_url() ?>assets/js/users.js"></script>
 <script src="<?= site_url() ?>assets/js/subscriber.js"></script>
+<script src="<?= site_url() ?>assets/js/account.js"></script>
 <script>
     $('.dropify').dropify();
 </script>
