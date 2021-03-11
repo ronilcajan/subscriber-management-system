@@ -1013,3 +1013,11 @@ img.shape-bottom {
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
 }
+
+.footer-links{
+    color:#1dd1a2;
+    font-weight: bold;
+}
+.footer-links:hover{
+    color: white;
+}

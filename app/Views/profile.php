@@ -11,7 +11,7 @@
                             <a href="javascript:void(0)">
                                 <img src="<?= empty($user['img']) ? site_url('/images/user.png') : site_url('uploads').'/'.$user['img'] ?>" alt="user-img" class="thumb-lg img-circle">
                             </a>
-                            <h4 class="text-white"><?= empty($user['name']) ? $user['username'] : ucwords($user['name']) ?></h4>
+                            <h4 class="text-white"><?= empty($user['name']) ? $user['name'] : ucwords($user['name']) ?></h4>
                             <h5 class="text-white"><?= $user['email'] ?></h5>
                             <?= $user['active']==1 ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ?>
                         </div>
@@ -23,7 +23,7 @@
                             <p><?= $user['username'] ?></p>
                         </div>
                         <div class="col-md-6"><strong>Phone</strong>
-                            <p><a href="tel:092321321"><?= $user['phone'] ?></a></p>
+                            <p><a href="tel:<?= $user['phone'] ?>"><?= $user['phone'] ?></a></p>
                         </div>
                     </div>
                     <hr>

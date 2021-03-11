@@ -26,7 +26,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Address</th>
-                                <th>Status</th>
+                                <th>Active</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,7 +38,7 @@
                                 <td><a href="tel:<?= $row['phone'] ?>"><?= $row['phone'] ?></a></td>
                                 <td><a href="mailto:<?= $row['email'] ?>"><?= $row['email'] ?></a></td>
                                 <td><?= ucwords($row['street'].', '.$row['city'].', '.$row['province']) ?></td>
-                                <td><?= $row['status']=='Active' ? '<span class="label label-success">'.$row['status'].'</span>' : '<span class="label label-danger">'.$row['status'].'</span>' ?></td>
+                                <td><?= $row['status']=='Active' ? '<input type="checkbox" checked class="js-switch" data-color="#99d683" data-size="small" data-id="'.$row['id'].'" onchange="changeSubsStatus(this)" />' : '<input type="checkbox"  data-id="'.$row['id'].'" onchange="changeSubsStatus(this)" class="js-switch" data-color="#99d683" data-size="small" />' ?></td>
                                 <td>
                                     <a class="text-primary waves-effect waves-light tooltip-primary m-l-5 m-t-5" href="<?= site_url('admin/subscriber_info/').$row['id']; ?>" data-toggle="tooltip" title="View Subscribers">
                                         <i class="fa fa-user"></i>
@@ -60,7 +60,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Address</th>
-                                <th>Status</th>
+                                <th>Active</th>
                                 <th>Action</th>
                             </tr> 
                         </tfoot>

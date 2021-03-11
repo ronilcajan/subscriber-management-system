@@ -38,6 +38,7 @@
     
     <!-- Responsice CSS -->
     <link rel="stylesheet" href="home_files/assets/css/responsive.css" type="text/css">
+
 </head>
    
 <body>
@@ -110,8 +111,7 @@
                     <div class="col-lg-6">
                         <div class="about-text">
                             <h1 class="mb-20px">About Us</h1>
-                            <p>Ournet Internet  Communications Ltd is a private broadband internet service 
-provider  with 12 years of experience.</p>
+                            <p>Ournet Internet  Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                             <p class="mb-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodnsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             <a href="#" class="ournet-btn">Read More</a>
                         </div>
@@ -182,48 +182,42 @@ provider  with 12 years of experience.</p>
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Unlimited Package</h4>
-                            <p>Ournet is a Internet Communications Ltd
-is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-2.png" alt="">
                             <h4>Dedicated IP Server</h4>
-                            <p>Ournet is a Internet Communications Ltd
-is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-3.png" alt="">
                             <h4>Fiver Optic Network</h4>
-                            <p>Ournet is a Internet Communications Ltd
-is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Stable Connections</h4>
-                            <p>Ournet is a Internet Communications Ltd
-is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-5.png" alt="">
                             <h4>Buffer Free Browsing</h4>
-                            <p>Ournet is a Internet Communications Ltd
-is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-6.png" alt="">
                             <h4>24/7 Customer Support</h4>
-                            <p>Ournet is a Internet Communications Ltd
-is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                 </div>
@@ -377,9 +371,9 @@ is a private broadband internet service provider  with 12 years of experience.</
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
                         <div class="cta-info text-center">
-                            <h2>Need any help about Pricing, Location or others?
-Please feel free to contact us</h2>
-                       <a href="#" class="cta-btn">Contact us</a>
+                            <h2>Need any help about Pricing, Location or others? Please feel free to contact us</h2>
+                       <a href="#" class="cta-btn">Email us</a>
+                       <a href="#" class="cta-btn">Call us</a>
                         </div>
                     </div>
                 </div>
@@ -392,14 +386,14 @@ Please feel free to contact us</h2>
                        <div class="col-lg-3 col-md-6">
                            <div class="footer-widget">
                                <div class="footer-logo">
-                                   <a href="#"><img width="100" src="<?= site_url() ?>images/logo.png" alt=""></a>
+                                   <a href="#"><img width="150" src="<?= site_url() ?>images/logo.jpg" alt=""></a>
                                </div>
                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer</p>
                            </div>
                        </div>
                        <div class="col-lg-2 offset-lg-1 col-md-6">
                            <div class="footer-widget">
-                               <h4 class="footer-title">Company</h4>
+                               <h4 class="footer-title">Links</h4>
                                <div class="footer-widget-menu">
                                    <ul>
                                        <li><a href="#">Contact Us</a></li>
@@ -414,7 +408,7 @@ Please feel free to contact us</h2>
                        </div>
                        <div class="col-lg-2 offset-lg-1 col-md-6">
                            <div class="footer-widget">
-                               <h4 class="footer-title">Support</h4>
+                               <h4 class="footer-title">Other Links</h4>
                                <div class="footer-widget-menu">
                                    <ul>
                                        <li><a href="#">Contact Us</a></li>
@@ -447,14 +441,14 @@ Please feel free to contact us</h2>
                    <div class="row">
                        <div class="col-md-6">
                             <div class="footer-copyright-item">
-                                <p>Copyright &copy; 2019 Ournet. Design & Developed By itcroc.</p>
+                                <p>Copyright &copy; 2021 Waga Network Solutions. Design & Developed By <a class="footer-links" href="#">R Labs</a>.</p>
                             </div>
                        </div>
                        <div class="col-md-6">
                             <div class="social text-right">
                                  <a href="#"><i class="ti-facebook"></i></a>
-                                 <a href="#"><i class="ti-instagram"></i></a>
-                                 <a href="#"><i class="ti-linkedin"></i></a>
+                                 <!-- <a href="#"><i class="ti-instagram"></i></a>
+                                 <a href="#"><i class="ti-linkedin"></i></a> -->
                              </div>
                        </div>
                    </div>

@@ -7,12 +7,19 @@
 <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>images/logo-transparent.png">
 <title><?= $title ?> | Waga Network Solutions</title>
 <!-- ===== Bootstrap CSS ===== -->
+
 <link href="<?= site_url() ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="<?= site_url() ?>plugins/components/dropify/dist/css/dropify.min.css" type="text/css">
+<link href="<?= site_url() ?>plugins/components/dropify/dist/css/dropify.min.css" rel="stylesheet" type="text/css">
 <link href="<?= site_url() ?>plugins/components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-<link href="<?= site_url() ?>plugins/components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-<!-- ===== Animation CSS ===== -->
 <link href="<?= site_url() ?>plugins/components/icheck/skins/all.css" rel="stylesheet">
+
+<link href="<?= site_url() ?>plugins/components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+<link href="<?= site_url() ?>plugins/components/custom-select/custom-select.css" rel="stylesheet" type="text/css" />
+<link href="<?= site_url() ?>plugins/components/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="<?= site_url() ?>plugins/components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+
+<!-- ===== Animation CSS ===== -->
+
 <link href="<?= site_url() ?>assets/css/animate.css" rel="stylesheet" type="text/css">
 <!-- ===== Custom CSS ===== -->
 <link href="<?= site_url() ?>assets/css/style.css" rel="stylesheet" type="text/css">

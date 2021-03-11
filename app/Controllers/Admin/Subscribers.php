@@ -30,6 +30,18 @@ class Subscribers extends BaseController
 		$data['title'] = "Update this Subscriber";
 		return view('admin/subscribers/edit_subscriber',$data);
 	}
+
+	public function profile($id){
+
+		$subsModel = new SubscriberModel();
+		$accModel = new AccountModel();
+		$data['subs'] = $subsModel->select('*, subscribers.status as stats')->join('accounts', 'subscribers.id=accounts.subscriber_id')->find($id);
+		$data['acc'] = $accModel->select('*, accounts.status as stats, accounts.id as acc_id')->join('subscribers', 'subscribers.id=accounts.subscriber_id')->where('subscriber_id', $id)->findAll();
+
+		$data['title'] = "Subscriber Profile";
+		return view('admin/subscribers/subscriber_profile',$data);
+	}
+
 	public function update()
 	{
 		if ($this->request->getMethod() == 'post') {
@@ -124,15 +136,14 @@ class Subscribers extends BaseController
 					];
 
 					$account->set($acc)->where('subscriber_id',$id)->update();
-
+					
 					return redirect()->back()->with('message', 'Subscriber has been updated!');
 				}
-
-				return redirect()->back()->with('errors', 'Updating subscriber is not successfull. Please review and try again!');
+				return redirect()->back()->withInput()->with('error', 'Updating subscriber is not successfull. Please review and try again!');
 				
 			}
 		}
-		return redirect()->back()->withInput()->with('errors', 'Submitted form is now allowed!');
+		return redirect()->back()->withInput()->with('error', 'Submitted form is now allowed!');
 	}
 
 	public function create()
@@ -230,11 +241,11 @@ class Subscribers extends BaseController
 					return redirect()->back()->with('message', 'New subscriber has been added!');
 				}
 
-				return redirect()->back()->with('errors', 'Adding new subscriber is not successfull. Please review and try again!');
+				return redirect()->back()->withInput()->with('error', 'Adding new subscriber is not successfull. Please review and try again!');
 				
 			}
 		}
-		return redirect()->back()->withInput()->with('errors', 'Submitted form is now allowed!');
+		return redirect()->back()->withInput()->with('error', 'Submitted form is now allowed!');
 	}
 
 	public function delete($id)
@@ -245,10 +256,43 @@ class Subscribers extends BaseController
 			$delete = $subsModel->delete($id);
 			if($delete){
 				$accModel->where('subscriber_id',$id)->delete();
-				$this->session->setFlashdata('error', 'Subscriber has been deleted!');
-				return redirect()->to(previous_url());
+				return redirect()->back()->withInput()->with('error', 'Subscribers has been deleted!');
 			}
 		}
+	}
+
+	public function changeStatus()
+	{
+		$validator = array('success' => false);
+
+		if ($this->request->getMethod() == 'post') {
+			$subsModel = new SubscriberModel();
+			$accModel = new AccountModel();
+
+			$status = $this->request->getVar('status');
+			$id = $this->request->getVar('id');
+
+			$data = [
+				'id' => $id,
+				'status' => $status,
+				'updated_at' => date('y-n-j G:i:s')
+			];
+
+			$update = $subsModel->save($data);
+
+			if($update){
+				$acc = [
+					'status' => $status,
+					'updated_at' => date('y-n-j G:i:s')
+				];
+				$accModel->set($acc)->where('subscriber_id',$id)->update();
+
+				$validator['success'] = true;
+			}
+		}
+
+		echo json_encode($validator);
+		
 	}
 
 }

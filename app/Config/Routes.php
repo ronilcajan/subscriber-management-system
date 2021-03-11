@@ -53,8 +53,16 @@ $routes->group('admin', function($routes) {
 	$routes->add('subscriber/delete/(:num)', 'Admin\Subscribers::delete/$1');
 	$routes->add('subscriber/update/(:num)', 'Admin\Subscribers::edit/$1');
 	$routes->post('update_subs', 'Admin\Subscribers::update');
+	$routes->post('changeSubsStatus', 'Admin\Subscribers::changeStatus');
+	$routes->add('subscriber_info/(:num)', 'Admin\Subscribers::profile/$1');
 
 	$routes->add('new_account', 'Admin\Accounts::new_account');
+	$routes->post('add_account', 'Admin\Accounts::create');
+	$routes->add('update_account/(:num)', 'Admin\Accounts::edit_account/$1');
+	$routes->add('account/delete/(:num)', 'Admin\Accounts::delete/$1');
+	$routes->post('changeAccStatus', 'Admin\Accounts::changeStatus');
+	$routes->post('account_update', 'Admin\Accounts::update');
+	$routes->add('account_info/(:num)', 'Admin\Accounts::account_info/$1');
 });
 /*
  * --------------------------------------------------------------------

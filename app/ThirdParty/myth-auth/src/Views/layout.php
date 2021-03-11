@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>/plugins/images/favicon.png">
-    <title>WAGANETWORK Solutions - SMS</title>
+    <title>Waga Network Solutions - SMS</title>
     <!-- ===== Bootstrap CSS ===== -->
     <link href="<?= site_url() ?>/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- ===== Plugin CSS ===== -->
