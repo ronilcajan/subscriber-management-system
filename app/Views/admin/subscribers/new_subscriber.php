@@ -99,15 +99,22 @@
                                             <label class="control-label">Antenna Name/Model</label>
                                             <input type="text" id="antenna" name="antenna" value="<?= old('antenna') ?>" class="form-control"></div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label class="control-label">Date Accomplished</label>
-                                            <input type="text" id="date_acc" name="date_acc" readonly value="<?= old('date_acc') ?>" class="form-control mydatepicker" placeholder="mm/dd/yyyy"></div>
+                                            <label class="control-label">Date Started</label>
+                                            <input type="text" onchange="calculateDate(this)" id="date_started" name="date_started" required readonly value="<?= old('date_started') ?>" class="form-control mydatepicker" placeholder="mm/dd/yyyy"></div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="control-label">Due Date</label>
-                                            <input type="text" id="due_date" name="due_date" value="<?= old('due_date') ?>" readonly class="form-control mydatepicker" placeholder="mm/dd/yyyy"></div>
+                                            <input type="text" onchange="calculateDay(this)" id="due_date" name="due_date" required value="<?= old('due_date') ?>" readonly class="form-control" placeholder="mm/dd/yyyy"></div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Schedule</label>
+                                            <input type="text" id="schedule" name="schedule" value="<?= old('schedule') ?>" readonly class="form-control">
+                                            <small id="emailHelp" class="form-text text-muted">Payment Schedule</small>
+                                        </div>
                                     </div>
                                 </div>
                                 <h3 class="box-title m-t-40">Subscription Options</h3>

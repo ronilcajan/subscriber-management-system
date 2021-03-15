@@ -58,15 +58,22 @@
                                             <label class="control-label">Antenna Name/Model</label>
                                             <input type="text" id="antenna" name="antenna" value="<?= $acc['antenna_model'] ?>" class="form-control"></div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label class="control-label">Date Accomplished</label>
-                                            <input type="text" id="date_acc" name="date_acc" readonly value="<?= $acc['date_accomplished'] ?>" class="form-control mydatepicker" placeholder="mm/dd/yyyy"></div>
+                                            <label class="control-label">Date Started</label>
+                                            <input type="text" onchange="calculateDate(this)" id="date_started" name="date_started" required readonly value="<?= $acc['date_started'] ?>" class="form-control mydatepicker" placeholder="mm/dd/yyyy"></div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="control-label">Due Date</label>
-                                            <input type="text" id="due_date" name="due_date" value="<?= $acc['due_date'] ?>" readonly class="form-control mydatepicker" placeholder="mm/dd/yyyy"></div>
+                                            <input type="text" id="due_date" name="due_date" onchange="calculateDay(this)" required value="<?= $acc['due_date'] ?>" readonly class="form-control" placeholder="mm/dd/yyyy"></div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Schedule</label>
+                                            <input type="text" id="schedule" name="schedule" value="<?= old('schedule') ?>" readonly class="form-control">
+                                            <small id="emailHelp" class="form-text text-muted">Payment Schedule</small>
+                                        </div>
                                     </div>
                                 </div>
                                 <h3 class="box-title m-t-40">Subscription Options</h3>
@@ -222,7 +229,7 @@
                             <div class="form-actions m-t-30">
                                 <input type="hidden" value="<?= $acc['id'] ?>" name="id">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save Changes</button>
-                                <button type="button" class="btn btn-default">Cancel</button>
+                                <a type="button" href="<?= site_url('admin/accounts') ?>" class="btn btn-default">Cancel</a>
                             </div>
                         </form>
                     </div>

@@ -1,6 +1,9 @@
 $('#accountTable').DataTable({
     responsive: true
 });
+$('#transactionTable').DataTable({
+    responsive: true
+});
 $(".select2").select2();
 
 function changeAccStatus(that) {

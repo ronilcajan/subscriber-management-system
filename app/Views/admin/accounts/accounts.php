@@ -26,7 +26,7 @@
                                 <th>Subscribers</th>
                                 <th>Monthly</th>
                                 <th>Schedule</th>
-                                <th>Status</th>
+                                <th>Active</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,7 +38,7 @@
                                     <td><?= ucwords($row['area_coverage']) ?></td>
                                     <td><a href="<?= site_url('admin/subscriber_info/').$row['subscriber_id'] ?>"><?= $row['name'] ?></a></td>
                                     <td>P <?= number_format($row['monthly'],2) ?></td>
-                                    <td><?= '5th day of the month' ?></td>
+                                    <td><?= $row['schedule'] ?>th day of the month</td>
                                     <td><?= $row['acc_status']=='Active' ? '<input type="checkbox" checked class="js-switch" data-color="#99d683" data-size="small" data-id="'.$row['acc_id'].'" onchange="changeAccStatus(this)" />' : '<input type="checkbox"  data-id="'.$row['acc_id'].'" onchange="changeAccStatus(this)" class="js-switch" data-color="#99d683" data-size="small" />' ?></td>
                                     <td>
                                         <a class="text-primary waves-effect waves-light tooltip-primary m-l-5 m-t-5" href="<?= site_url('admin/account_info/').$row['acc_id']; ?>" data-toggle="tooltip" title="View Account">
@@ -62,7 +62,7 @@
                                 <th>Subscribers</th>
                                 <th>Monthly</th>
                                 <th>Schedule</th>
-                                <th>Status</th>
+                                <th>Active</th>
                                 <th>Action</th>
                             </tr> 
                         </tfoot>

@@ -14,7 +14,7 @@ class Accounts extends BaseController
 						->findAll();
 
 		$data['title'] = "Accounts";
-		return view('admin/accounts/accounts',$data);
+		return view('admin/accounts/accounts',$data); 
 	}
 
 	public function new_account()
@@ -31,7 +31,7 @@ class Accounts extends BaseController
 		$subsModel = new SubscriberModel();
 		$account = new AccountModel();
 		$data['subs'] = $subsModel->findAll();
-		$data['acc'] = $account->join('subscribers', 'accounts.subscriber_id=subscribers.id')->find($id);
+		$data['acc'] = $account->select('*, accounts.id as id')->join('subscribers', 'accounts.subscriber_id=subscribers.id')->find($id);
 
 		$data['title'] = "Update This Account";
 		return view('admin/accounts/edit_account',$data);
@@ -59,6 +59,7 @@ class Accounts extends BaseController
 				'device_user' 	=> 'required',
 				'business_aff' 	=> 'required',
 				'speed' 	=> 'required',
+				'date_started' 	=> 'required',
 			];
 			$errors = [
 				'subs_id' 	=> [
@@ -82,6 +83,9 @@ class Accounts extends BaseController
 				'speed' 	=> [
 					'required' => 'Please select the download and upload speed.',
 				],
+				'date_started' => [
+					'required' => 'Date started is required.'
+				]
 			];
 
 			if (!$this->validate($rules,$errors)) {
@@ -100,8 +104,9 @@ class Accounts extends BaseController
 					'area_coverage' => $this->request->getVar('area_coverage'),
 					'google_coordinate' => $this->request->getVar('google_coor'),
 					'antenna_model' => $this->request->getVar('antenna'),
-					'date_accomplished' => $this->request->getVar('date_acc'),
+					'date_started' => $this->request->getVar('date_started'),
 					'due_date' => $this->request->getVar('due_date'),
+					'schedule' => date('d', strtotime($this->request->getVar('due_date'))),
 					'subs_option' => $this->request->getVar('options'),
 					'monthly' => $this->request->getVar('monthly'),
 					'device_user' => $this->request->getVar('device_user'),
@@ -110,8 +115,10 @@ class Accounts extends BaseController
 				];
 
 				$insert = $account->save($new_acc);
+				$acc_id = $account->insertID;
 
 				if($insert){
+
 					return redirect()->back()->with('message', 'New subscriber has been added!');
 				}
 				return redirect()->back()->with('errors', 'Adding new account is not successfull. Please review and try again!');
@@ -124,6 +131,8 @@ class Accounts extends BaseController
 	{
 		if ($this->request->getMethod() == 'post') {
 
+			$id = $this->request->getVar('id');
+
 			$rules = [
 				'subs_id' => 'required',
 				'account_name' 	=> 'required',
@@ -133,6 +142,7 @@ class Accounts extends BaseController
 				'device_user' 	=> 'required',
 				'business_aff' 	=> 'required',
 				'speed' 	=> 'required',
+				'date_started' 	=> 'required',
 			];
 			$errors = [
 				'subs_id' 	=> [
@@ -156,6 +166,9 @@ class Accounts extends BaseController
 				'speed' 	=> [
 					'required' => 'Please select the download and upload speed.',
 				],
+				'date_started' => [
+					'required' => 'Date started is required.'
+				]
 			];
 
 			if (!$this->validate($rules,$errors)) {
@@ -167,14 +180,15 @@ class Accounts extends BaseController
 				$account = new AccountModel();
 
 				$acc = [
-					'id' => $this->request->getVar('id'),
+					'id' => $id,
 					'subscriber_id' => $this->request->getVar('subs_id'),
 					'account_name' => $this->request->getVar('account_name'),
 					'area_coverage' => $this->request->getVar('area_coverage'),
 					'google_coordinate' => $this->request->getVar('google_coor'),
 					'antenna_model' => $this->request->getVar('antenna'),
-					'date_accomplished' => $this->request->getVar('date_acc'),
+					'date_started' => $this->request->getVar('date_started'),
 					'due_date' => $this->request->getVar('due_date'),
+					'schedule' => date('d', strtotime($this->request->getVar('due_date'))),
 					'subs_option' => $this->request->getVar('options'),
 					'monthly' => $this->request->getVar('monthly'),
 					'device_user' => $this->request->getVar('device_user'),
@@ -182,9 +196,10 @@ class Accounts extends BaseController
 					'speed' => $this->request->getVar('speed'),
 				];
 
-				$insert = $account->save($acc);
+				$update = $account->save($acc);
 
-				if($insert){
+				if($update){
+
 					return redirect()->back()->with('message', 'Account has been update!');
 				}
 				return redirect()->back()->withInput()->with('error', 'Updating new account is not successfull. Please review and try again!');

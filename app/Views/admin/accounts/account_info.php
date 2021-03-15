@@ -25,7 +25,7 @@
                             <p><?= $acc['account_name'] ?></p>
                         </div>
                         <div class="col-md-6"><strong>Area of Coverage</strong>
-                            <p><?= $acc['area_coverage'] ?></p>
+                            <p><?= ucwords($acc['area_coverage']) ?></p>
                         </div>
                     </div>
                     <hr>
@@ -39,8 +39,8 @@
                     </div>
                     <hr>
                     <div class="row text-center m-t-10">
-                        <div class="col-md-6 b-r"><strong>Date Accomplished</strong>
-                            <p><?= date('M. d, Y', strtotime($acc['date_accomplished'])) ?></p>
+                        <div class="col-md-6 b-r"><strong>Date Started</strong>
+                            <p><?= date('M. d, Y', strtotime($acc['date_started'])) ?></p>
                         </div>
                         <div class="col-md-6"><strong>Due Date</strong>
                             <p><?= date('M. d, Y', strtotime($acc['due_date'])) ?></p>
@@ -74,14 +74,12 @@
         </div>
         <div class="col-md-9 col-xs-12">
             <div class="white-box">
-                <h3 class="box-title m-b-0">Payment Transactions</h3>
+                <h3 class="box-title m-b-0">Transaction History</h3>
                 <div class="table-responsive">
-                    <table  id="myTable" class="table table-striped table-sm">
+                    <table  id="transactionTable" class="table table-striped table-sm">
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Account Name</th>
-                                <th>Monthly</th>
                                 <th>Description</th>
                                 <th>Date</th>
                                 <th>Notes</th>
@@ -93,8 +91,6 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Account Name</th>
-                                <th>Monthly</th>
                                 <th>Description</th>
                                 <th>Date</th>
                                 <th>Notes</th>
