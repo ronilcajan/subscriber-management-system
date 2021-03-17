@@ -39,9 +39,10 @@
         new Switchery($(this)[0], $(this).data());
     });
 </script>
+<script src="<?= site_url() ?>plugins/components/styleswitcher/jQuery.style.switcher.js"></script>
 
 <script src="<?= site_url() ?>assets/js/users.js"></script>
 <script src="<?= site_url() ?>assets/js/subscriber.js"></script>
 <script src="<?= site_url() ?>assets/js/account.js"></script>
+<script src="<?= site_url() ?>assets/js/payment.js"></script>
 
-<script src="<?= site_url() ?>plugins/components/styleswitcher/jQuery.style.switcher.js"></script>

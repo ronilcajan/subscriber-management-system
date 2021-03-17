@@ -21,6 +21,12 @@
                 </div>
                 <div class="user-btm-box">
                     <div class="row text-center m-t-10">
+                        <div class="col-md-12 b-r"><strong>Date Started</strong>
+                            <p><?= date('M. d, Y', strtotime($acc['date_started'])) ?></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-center m-t-10">
                         <div class="col-md-6 b-r"><strong>Account Name</strong>
                             <p><?= $acc['account_name'] ?></p>
                         </div>
@@ -35,15 +41,6 @@
                         </div>
                         <div class="col-md-6"><strong>Antenna/Model</strong>
                             <p><?= $acc['antenna_model'] ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row text-center m-t-10">
-                        <div class="col-md-6 b-r"><strong>Date Started</strong>
-                            <p><?= date('M. d, Y', strtotime($acc['date_started'])) ?></p>
-                        </div>
-                        <div class="col-md-6"><strong>Due Date</strong>
-                            <p><?= date('M. d, Y', strtotime($acc['due_date'])) ?></p>
                         </div>
                     </div>
                     <hr>

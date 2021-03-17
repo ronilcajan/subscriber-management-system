@@ -10,7 +10,7 @@
                         <h4 class="box-title"><?= $title ?></h4>
                     </div>
                 </div>
-                <p class="text-muted m-b-20">You can add, edit and delete subscribers here.</p>
+                <p class="text-muted m-b-20">You can create payment here.</p>
                 <div class="table-responsive">
                     <table  id="accountTable" class="table table-striped table-sm">
                         <thead>
@@ -21,6 +21,7 @@
                                 <th>Subscribers</th>
                                 <th>Monthly</th>
                                 <th>Schedule</th>
+                                <th>Date Paid</th>
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -35,6 +36,7 @@
                                     <td><a href="<?= site_url('admin/subscriber_info/').$row['subscriber_id'] ?>"><?= $row['name'] ?></a></td>
                                     <td>P <?= number_format($row['monthly'],2) ?></td>
                                     <td><?= $row['schedule'] ?>th day</td>
+                                    <td><?= empty($row['date_paid']) ? date('M. d, Y', strtotime($row['date_started'])) : date('M. d, Y', strtotime($row['date_paid'])) ?></td>
                                     <td><?= date('M. d, Y', strtotime($row['due_date'])) ?></td>
                                     <td>
                                         <?php 
@@ -49,13 +51,13 @@
                                     </td>
                                     <td>
                                         <?php if ($now > $due_date): ?>
-                                        <span class="tooltip-danger" data-toggle="tooltip" title="Pay Now">
+                                        <span class="tooltip-danger" data-toggle="tooltip" title="Pay Now" onclick="showPment(this)"  data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
                                             <a class="text-danger waves-effect waves-light m-l-5 m-t-5" href="#payModal" data-toggle="modal" >
                                                 <i class="fa fa-product-hunt"></i>
                                             </a>
                                         </span>
                                         <?php else: ?>
-                                            <span class="tooltip-primary" data-toggle="tooltip" title="Pay Now">
+                                            <span class="tooltip-primary" data-toggle="tooltip" title="Pay Now" onclick="showPment(this)"  data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
                                             <a class="text-primary waves-effect waves-light m-l-5 m-t-5" href="#payModal" data-toggle="modal" >
                                                 <i class="fa fa-product-hunt"></i>
                                             </a>
@@ -76,6 +78,7 @@
                                 <th>Subscribers</th>
                                 <th>Monthly</th>
                                 <th>Schedule</th>
+                                <th>Date Paid</th>
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th>Action</th>

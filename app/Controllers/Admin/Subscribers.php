@@ -3,6 +3,7 @@
 use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\SubscriberModel;
+use App\Models\PaymentModel;
 
 class Subscribers extends BaseController
 {
@@ -103,6 +104,7 @@ class Subscribers extends BaseController
 
 				$subscriber = new SubscriberModel();
 				$account = new AccountModel();
+				$payment = new PaymentModel();
 				
 				$new_subs = [
 					'name' => $this->request->getVar('name'),
@@ -138,6 +140,14 @@ class Subscribers extends BaseController
 					];
 
 					$account->save($new_acc);
+					$acc_id = $account->insertID;
+
+					$p_acc = [
+						'account_id' => $acc_id,
+						'due_date' => $this->request->getVar('due_date'),
+					];
+
+					$payment->save($p_acc);
 
 					return redirect()->back()->with('message', 'New subscriber has been added!');
 				}
@@ -212,6 +222,7 @@ class Subscribers extends BaseController
 
 				$subscriber = new SubscriberModel();
 				$account = new AccountModel();
+				$payment = new PaymentModel();
 				
 				$subs = [
 					'id' => $id,
@@ -249,7 +260,13 @@ class Subscribers extends BaseController
 					];
 
 					$account->save($acc);
-					
+
+					$p_acc = [
+						'due_date' => $this->request->getVar('due_date'),
+					];
+
+					$addp = $payment->set($p_acc)->where('account_id', $this->request->getVar('acc_id'))->update();
+
 					return redirect()->back()->with('message', 'Subscriber has been updated!');
 				}
 				return redirect()->back()->withInput()->with('error', 'Updating subscriber is not successfull. Please review and try again!');

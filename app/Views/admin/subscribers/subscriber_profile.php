@@ -50,7 +50,7 @@
             <div class="white-box">
                 <h3 class="box-title m-b-0">Subscriber Accounts</h3>
                 <div class="table-responsive">
-                    <table  id="myTable" class="table table-striped table-sm">
+                    <table  id="subscriberTable" class="table table-striped table-sm">
                         <thead>
                             <tr>
                                 <th>No.</th>

@@ -18,7 +18,7 @@
                     <ul class="dropdown-menu animated flipInY">
                         <li><a href="<?= site_url('admin/profile') ?>"><i class="fa fa-user"></i> Profile</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-cog"></i> Account Settings</a></li>
+                        <li><a href="<?= site_url('admin/profile') ?>"><i class="fa fa-cog"></i> Account Settings</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="<?= site_url('logout') ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>

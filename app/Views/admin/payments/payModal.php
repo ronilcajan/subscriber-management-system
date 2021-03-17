@@ -5,24 +5,30 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Create Payment</h4> </div>
-            <form action="<?= base_url('admin/create-subject') ?>" method="POST">
+            <form action="<?= base_url('admin/paynow') ?>" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="subject_code" class="control-label">Account name:</label>
-                        <input type="text" class="form-control" name="subject_code" required="">
+                        <label for="acount" class="control-label">Account name:</label>
+                        <input type="text" id="account" class="form-control" readonly name="account" required="">
                     </div>
                     <div class="form-group">
-                        <label for="subject" class="control-label">Subject Name:</label>
-                        <input type="text" class="form-control" name="subject" required="">
+                        <label for="acount" class="control-label">Date:</label>
+                        <input type="date" class="form-control" name="date_paid" required="">
                     </div>
                     <div class="form-group">
-                        <label for="description" class="control-label">Description:</label>
-                        <textarea class="form-control" name="description" required=""></textarea>
+                        <label for="subject" class="control-label">Payment for:</label>
+                        <select class="form-control" name="pment" id="pment">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="control-label">Notes</label>
+                        <textarea class="form-control" name="notes" placeholder="Write something here.."></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                    <button class="btn btn-info waves-effect waves-light" type="submit">Save</button>
+                    <input type="hidden" name="id" id="account_id">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-info waves-effect waves-light" type="submit">Pay</button>
                 </div>
             </form>
         </div>

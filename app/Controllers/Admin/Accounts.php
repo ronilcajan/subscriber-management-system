@@ -3,6 +3,7 @@
 use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\SubscriberModel;
+use App\Models\PaymentModel;
 
 class Accounts extends BaseController
 {
@@ -95,6 +96,7 @@ class Accounts extends BaseController
 			}else{
 
 				$account = new AccountModel();
+				$payment = new PaymentModel();
 
 				$subs_id = $this->request->getVar('subs_id');
 
@@ -118,6 +120,13 @@ class Accounts extends BaseController
 				$acc_id = $account->insertID;
 
 				if($insert){
+
+					$p_acc = [
+						'account_id' => $acc_id,
+						'due_date' => $this->request->getVar('due_date'),
+					];
+
+					$payment->save($p_acc);
 
 					return redirect()->back()->with('message', 'New subscriber has been added!');
 				}
@@ -178,6 +187,7 @@ class Accounts extends BaseController
 			}else{
 
 				$account = new AccountModel();
+				$payment = new PaymentModel();
 
 				$acc = [
 					'id' => $id,
@@ -199,6 +209,12 @@ class Accounts extends BaseController
 				$update = $account->save($acc);
 
 				if($update){
+
+					$p_acc = [
+						'due_date' => $this->request->getVar('due_date'),
+					];
+
+					$addp = $payment->set($p_acc)->where('account_id', $id)->update();
 
 					return redirect()->back()->with('message', 'Account has been update!');
 				}

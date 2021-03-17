@@ -63,6 +63,9 @@ $routes->group('admin', function($routes) {
 	$routes->post('changeAccStatus', 'Admin\Accounts::changeStatus');
 	$routes->post('account_update', 'Admin\Accounts::update');
 	$routes->add('account_info/(:num)', 'Admin\Accounts::account_info/$1');
+
+	$routes->post('getPayment', 'Admin\Payments::getPayment');
+	$routes->post('paynow', 'Admin\Payments::paynow');
 });
 /*
  * --------------------------------------------------------------------

@@ -2,12 +2,12 @@
 
 use CodeIgniter\Model;
 
-class TranscationModel extends Model{
+class TransactionModel extends Model{
 
     protected $table = 'transactions';
     protected $primaryKey = 'id';
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['id','account_id','description','notes','p_date','updated_at'];
+    protected $allowedFields = ['id','account_id','description','notes','status','p_date','updated_at'];
     protected $deletedField  = 'deleted_at';
 
 }
