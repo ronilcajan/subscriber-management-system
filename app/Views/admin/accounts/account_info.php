@@ -72,30 +72,40 @@
         <div class="col-md-9 col-xs-12">
             <div class="white-box">
                 <h3 class="box-title m-b-0">Transaction History</h3>
-                <div class="table-responsive">
-                    <table  id="transactionTable" class="table table-striped table-sm">
-                        <thead>
+                <table  id="acctransactionTable" class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Notes</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no=1; foreach($transac as $row): ?>
                             <tr>
-                                <th>No.</th>
-                                <th>Description</th>
-                                <th>Date</th>
-                                <th>Notes</th>
-                                <th>Action</th>
+                                <td><?= $no ?></td>
+                                <td><?= date('F d, Y', strtotime($row['p_date'])) ?></td>
+                                <td>P <?= number_format($row['payment'],2) ?></td>
+                                <td>Payment for <?= date('F d, Y', strtotime($row['description'])) ?>.</td>
+                                <td><?= $row['notes'] ?></td>
+                                <td><?= $row['status']=='Paid' ? "<span class='label label-success'>Paid</span>" : "<span class='label label-danger'>Unpaid</span>" ?></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>No.</th>
-                                <th>Description</th>
-                                <th>Date</th>
-                                <th>Notes</th>
-                                <th>Action</th>
-                            </tr> 
-                        </tfoot>
-                    </table>
-                </div>
+                        <?php $no++; endforeach ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Notes</th>
+                            <th>Status</th>
+                        </tr> 
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>

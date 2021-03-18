@@ -87,7 +87,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="slidertext">
-                                <h1>Explore over the World  with Ournet</h1>
+                                <h1>Explore over the World with Waga Network Solutions</h1>
                                 <p>Striving towards an era of unlimited data.</p>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                     <div class="col-lg-6">
                         <div class="about-text">
                             <h1 class="mb-20px">About Us</h1>
-                            <p>Ournet Internet  Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                             <p class="mb-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodnsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             <a href="#" class="ournet-btn">Read More</a>
                         </div>
@@ -160,7 +160,7 @@
                         <div class="service-box-area">
                             <img src="home_files/assets/images/4.png" alt="">
                             <div class="overlay-service">
-                                <h4>Capability of providing <br> 100mbs wirelessly</h4>
+                                <h4>Capability of providing <br> 30mbs wirelessly</h4>
                             </div>
                         </div>
                     </div>
@@ -182,42 +182,42 @@
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Unlimited Package</h4>
-                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-2.png" alt="">
                             <h4>Dedicated IP Server</h4>
-                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-3.png" alt="">
                             <h4>Fiver Optic Network</h4>
-                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Stable Connections</h4>
-                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-5.png" alt="">
                             <h4>Buffer Free Browsing</h4>
-                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-6.png" alt="">
                             <h4>24/7 Customer Support</h4>
-                            <p>Ournet is a Internet Communications Ltd is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                 </div>
@@ -237,25 +237,23 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="pricing-item text-center mb-30px">
                             <div class="pricing-head">
-                                <h4>Cherry</h4>
+                                <h4>Option 1</h4>
                                 <div class="speed">
-                                    <h1>20</h1>
+                                    <h1>Up to 30</h1>
                                     <span>mbps</span>
                                 </div>
                             </div>
                             <div class="pricing-content">
-                                <ul>
+                                <ul class="pl-2 pr-2">
                                     <li>Unlimited Browsing</li> 
-                                    <li>12AM- 9PM 70mbps</li>
-                                    <li>100 mbps YouTube</li>
-                                    <li>100 mbps BDIX Server</li>
-                                    <li>Secure Real IP</li>
+                                    <li>Cashout worth 5000, covers antenna, router, </li>
+                                    <li>20m UTP, 1 length G.I. Pipe and labor expenses/charges.</li>
+                                    <li>INSTALLATION FEE: 1500</li>
                                 </ul>
                             </div>
                             <div class="pricing-footer">
-                                <a href="#" class="ournet-btn">Select Plan</a>
                                 <div class="price">
-                                    <h1>$29</h1>
+                                    <h2>P1,000 - P3,000</h2>
                                     <span>Monthly</span>
                                 </div>
                             </div>
@@ -264,25 +262,23 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="pricing-item text-center mb-30px">
                             <div class="pricing-head">
-                                <h4>Peach</h4>
+                                <h4>Option 2</h4>
                                 <div class="speed">
-                                    <h1>30</h1>
+                                    <h1>Up to 30</h1>
                                     <span>mbps</span>
                                 </div>
                             </div>
                             <div class="pricing-content">
-                                <ul>
+                                <ul class="pl-2 pr-2">
                                     <li>Unlimited Browsing</li> 
-                                    <li>12AM- 9PM 70mbps</li>
-                                    <li>100 mbps YouTube</li>
-                                    <li>100 mbps BDIX Server</li>
-                                    <li>Secure Real IP</li>
+                                    <li>No cashout. Lock-in contract is 18 months for</li>
+                                    <li>basic antenna only(Litebeam m5 AC Gen2, Loco m5. AC, Comfast 2.4ghz)</li>
+                                    <li>INSTALLATION FEE: 2500</li>
                                 </ul>
                             </div>
                             <div class="pricing-footer">
-                                <a href="#" class="ournet-btn">Select Plan</a>
                                 <div class="price">
-                                    <h1>$39</h1>
+                                    <h2>P1,000 - P3,500</h2>
                                     <span>Monthly</span>
                                 </div>
                             </div>
@@ -291,25 +287,24 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="pricing-item text-center mb-30px">
                             <div class="pricing-head">
-                                <h4>Kiwi</h4>
+                                <h4>Option 3</h4>
                                 <div class="speed">
-                                    <h1>50</h1>
+                                    <h1>Up to 3</h1>
                                     <span>mbps</span>
                                 </div>
                             </div>
                             <div class="pricing-content">
-                                <ul>
+                                <ul class="pl-2 pr-2">
                                     <li>Unlimited Browsing</li> 
-                                    <li>12AM- 9PM 70mbps</li>
-                                    <li>100 mbps YouTube</li>
-                                    <li>100 mbps BDIX Server</li>
-                                    <li>Secure Real IP</li>
+                                    <li>WIFI Hotspot Business affiliates with cashout</li>
+                                    <li>worth 5000, covers antenna, router, 20m UTP, 1</li>
+                                    <li>length G.I. Pipe and labor expenses/charges</li>
+                                    <li>INSTALLATION FEE: 1500</li>
                                 </ul>
                             </div>
                             <div class="pricing-footer">
-                                <a href="#" class="ournet-btn">Select Plan</a>
                                 <div class="price">
-                                    <h1>$49</h1>
+                                    <h2>P300</h2>
                                     <span>Monthly</span>
                                 </div>
                             </div>
@@ -327,7 +322,7 @@
                                 <div class="col-lg-5">
                                     <div class="abpi-t">
                                         <h4>We'll help you get back to work</h4>
-                                        <p>Banglaournet Communications Ltd is a privately held Bangladeshi 4G wireless broadband operator. It uses WiMAX technology.</p>
+                                        <p>Waga Network Solutions is a privately held 4G wireless broadband operator. It uses WiMAX technology.</p>
                                         <a class="ournet-btn" href="#">Learn More</a>
                                     </div>
                                 </div>
@@ -349,7 +344,7 @@
                                 <div class="quate">
                                     <img src="home_files/assets/images/quate.png" alt="">
                                 </div>
-                                <p>‘’The solution of ournet is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
+                                <p>‘’Waga Network Solutions is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
                                 <h3>Farnando Toress</h3>
                                 <span>Student</span>
                             </div>
@@ -357,7 +352,7 @@
                                 <div class="quate">
                                     <img src="home_files/assets/images/quate.png" alt="">
                                 </div>
-                                <p>‘’The solution of ournet is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
+                                <p>‘’Waga Network Solutions is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
                                 <h3>Farnando Toress</h3>
                                 <span>Student</span>
                             </div>
@@ -372,8 +367,8 @@
                     <div class="col-lg-8 offset-lg-2">
                         <div class="cta-info text-center">
                             <h2>Need any help about Pricing, Location or others? Please feel free to contact us</h2>
-                       <a href="#" class="cta-btn">Email us</a>
-                       <a href="#" class="cta-btn">Call us</a>
+                            <a href="#" class="cta-btn ">Email us</a>
+                            <a href="#" class="cta-btn mt-3 ml-2">Call us</a>
                         </div>
                     </div>
                 </div>
@@ -388,7 +383,7 @@
                                <div class="footer-logo">
                                    <a href="#"><img width="150" src="<?= site_url() ?>images/logo.jpg" alt=""></a>
                                </div>
-                               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer</p>
+                               <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
                            </div>
                        </div>
                        <div class="col-lg-2 offset-lg-1 col-md-6">

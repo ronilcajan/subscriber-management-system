@@ -7,7 +7,6 @@
             <div class="white-box">
                 <h3 class="box-title m-b-0"><?= $title ?></h3>
                 <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
-                <div class="table-responsive">
                     <table  id="myTable" class="table table-striped table-sm">
                         <thead>
                             <tr>
@@ -93,7 +92,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
             </div>
         </div>
     </div>

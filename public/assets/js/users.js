@@ -1,5 +1,16 @@
 $('#userTable').DataTable({
-    responsive: true
+    responsive: true,
+    language: {
+      search: "_INPUT_",
+      searchPlaceholder: "Search..."
+  }
+});
+$('#myTable').DataTable({
+  responsive: true,
+  language: {
+    search: "_INPUT_",
+    searchPlaceholder: "Search..."
+}
 });
 $(".toggle-password").click(function() {
     $(this).toggleClass("fa-eye fa-eye-slash");

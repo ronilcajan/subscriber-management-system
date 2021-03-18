@@ -4,6 +4,7 @@ use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\SubscriberModel;
 use App\Models\PaymentModel;
+use App\Models\TransactionModel;
 
 class Accounts extends BaseController
 {
@@ -41,7 +42,17 @@ class Accounts extends BaseController
 	public function account_info($id)
 	{
 		$account = new AccountModel();
-		$data['acc'] = $account->select('*, accounts.status as stats')->join('subscribers', 'accounts.subscriber_id=subscribers.id')->find($id);
+		$transac = new TransactionModel();
+
+		$data['acc'] = $account->select('*, accounts.status as stats')
+								->join('subscribers', 'accounts.subscriber_id=subscribers.id')
+								->find($id);
+
+		$data['transac'] = $transac->select('*, accounts.id as acc_id, transactions.id as id, transactions.status as status')
+									->join('accounts', 'accounts.id=transactions.account_id')
+									->join('subscribers', 'subscribers.id=accounts.subscriber_id')
+									->where('accounts.id', $id)
+									->findAll();
 
 		$data['title'] = "Account Info";
 		return view('admin/accounts/account_info',$data);
@@ -214,7 +225,7 @@ class Accounts extends BaseController
 						'due_date' => $this->request->getVar('due_date'),
 					];
 
-					$addp = $payment->set($p_acc)->where('account_id', $id)->update();
+					$payment->set($p_acc)->where('account_id', $id)->update();
 
 					return redirect()->back()->with('message', 'Account has been update!');
 				}

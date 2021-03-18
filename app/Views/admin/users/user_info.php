@@ -38,34 +38,32 @@
             <div class="white-box">
             <h3 class="box-title m-b-0">User Activity</h3>
                 <p class="text-muted m-b-20">Check user activity.</p>
-                <div class="table-responsive">
-                    <table  id="myTable" class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>No.</th>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr> 
-                        </tfoot>
-                    </table>
-                </div>
+                <table  id="myTable" class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No.</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr> 
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>

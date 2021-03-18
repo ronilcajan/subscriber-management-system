@@ -1,8 +1,23 @@
 $('#accountTable').DataTable({
-    responsive: true
+    responsive: true,
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    }
+});
+$('#acctransactionTable').DataTable({
+    responsive: true,
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    }
 });
 $('#transactionTable').DataTable({
-    responsive: true
+    responsive: true,
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    }
 });
 $(".select2").select2();
 

@@ -265,7 +265,7 @@ class Subscribers extends BaseController
 						'due_date' => $this->request->getVar('due_date'),
 					];
 
-					$addp = $payment->set($p_acc)->where('account_id', $this->request->getVar('acc_id'))->update();
+					$payment->set($p_acc)->where('account_id', $this->request->getVar('acc_id'))->update();
 
 					return redirect()->back()->with('message', 'Subscriber has been updated!');
 				}

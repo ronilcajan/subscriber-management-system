@@ -1,11 +1,18 @@
 <?php namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\TransactionModel;
 
 class Transactions extends BaseController
 {
 	public function index()
 	{
+		$transac = new TransactionModel();
+
+		$data['transac'] = $transac->select('*, accounts.id as acc_id, transactions.id as id, transactions.status as status')
+									->join('accounts', 'accounts.id=transactions.account_id')
+									->findAll();
+
 		$data['title'] = "Transactions";
 		return view('admin/payments/transactions',$data);
 	}

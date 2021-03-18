@@ -1,8 +1,12 @@
 $('#subscriberTable').DataTable({
-    responsive: true
+    responsive: true,
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    }
 });
 $('.mydatepicker').datepicker({
-    todayHighlight: true
+    todayHighlight: true,
 });
 
 function changeSubsStatus(that) {

@@ -26,23 +26,27 @@ class Payments extends BaseController
 		if ($this->request->getMethod() == 'post') {
 
 			$rules = [
-				'account' 	=> 'required',
-				'pment' => 'required',
 				'id' 	=> 'required',
-				'date_paid' => 'required'
+				'account' 	=> 'required',
+				'paymentDate' => 'required',
+				'paymentDue' => 'required',
+				'totalPay' => 'required',
 			];
 			$errors = [
-				'pment' 	=> [
-					'required' => 'Please select payment amount.',
+				'paymentDue' 	=> [
+					'required' => 'Please select a date to pay.',
 				],
 				'account' 	=> [
 					'required' => 'Account name is required.',
 				],
-				'id' 	=> [
-					'required' => 'ID is required.',
+				'id' => [
+					'required' => 'Account ID is required.',
 				],
-				'date_paid' 	=> [
-					'required' => 'Date is required.',
+				'paymentDate' 	=> [
+					'required' => 'Payment date is required.',
+				],
+				'totalPay' => [
+					'required' => 'Total payment is required.'
 				]
 			];
 
@@ -58,54 +62,40 @@ class Payments extends BaseController
 				$transac = new TransactionModel();
 
 				$acc = $account->join('payments','accounts.id=payments.account_id')->find($id);
-				$no_pay = $this->request->getVar('pment');
 
-				if(empty($acc['date_paid'])){
-					if($no_pay == 1){
-						$pay_for = date('F d, Y', strtotime($acc['due_date']));
-						$description = 'Payment for '.$pay_for;
-					}else{
-						$date_paid = Time::parse($acc['due_date']);
-						$new_date_paid = $date_paid->addMonths($no_pay-1);
-						$pay_for = $new_date_paid->toLocalizedString('MMM d, yyyy');
-						$description = 'Payment for '.$pay_for;
-					}
-
+				if($acc['date_paid']){
+					$noMonths = $this->diffMonths($this->request->getVar('paymentDue'), $acc['date_paid']);
 				}else{
-
-					$date_paid = Time::parse($acc['date_paid']);
-					$new_date_paid = $date_paid->addMonths($no_pay);
-					$pay_for = $new_date_paid->toLocalizedString('MMM d, yyyy');
-
-					$description = 'Payment for '.$pay_for;
-					
+					$noMonths = $this->diffMonths($this->request->getVar('paymentDue'), $acc['date_started']);
 				}
-
+				
 				$tran_details = [
 					'account_id' => $id,
-					'description' => $description,
+					'description' =>  $this->request->getVar('paymentDue'),
 					'notes' => $this->request->getVar('notes'),
-					'p_date' => $this->request->getVar('date_paid'),
+					'p_date' => $this->request->getVar('paymentDate'),
+					'no_months' => abs($noMonths),
+					'payment' =>  $this->request->getVar('totalPay'),
 				];
 
 				$insert = $transac->save($tran_details);
 
 				if($insert){
 
-					$due_date = Time::parse($acc['due_date']);
-					$old_due_date = $due_date->addMonths($no_pay);
-					$new_due_date = $old_due_date->toLocalizedString('MM/dd/yyyy');
+					$due_date = Time::parse($this->request->getVar('paymentDue'));
+					$new_due_date = $due_date->addMonths(1);
+					$dueDatenow = $new_due_date->toLocalizedString('MM/dd/yyyy');
 
 					$dtls = [
 						'id' => $id,
-						'due_date' => $new_due_date
+						'due_date' => $dueDatenow
 					];
 
 					$account->save($dtls);
 
 					$pay_dtls = [
-						'date_paid' => date('m/d/Y', strtotime($pay_for)),
-						'due_date' => $new_due_date
+						'date_paid' => $this->request->getVar('paymentDue'),
+						'due_date' => $dueDatenow
 					];
 
 					$payment->set($pay_dtls)->where('account_id', $id)->update();
@@ -113,7 +103,7 @@ class Payments extends BaseController
 					return redirect()->back()->with('message', 'Payment has been created!');
 				}
 				
-				return redirect()->back()->with('errors', 'Adding new account is not successfull. Please review and try again!');
+				return redirect()->back()->with('errors', 'Creating payment is not successfull. Please review and try again!');
 				
 			}
 		}
@@ -121,7 +111,7 @@ class Payments extends BaseController
 	}
 
 	public function getPayment(){
-		$validator = array('success' => false, 'pment'=> array(), 'test'=> array());
+		$validator = array('success' => false, 'pment'=> array(), 'due'=> array(), 'monthly' => array());
 
 		if ($this->request->getMethod() == 'post') {
 			$pment = array();
@@ -137,63 +127,72 @@ class Payments extends BaseController
 
 			$todayDate = $todayMonth->addDays($acc['schedule'] - 1); // format todays date into 5th day of the month to match the schedule
 
-			$monthly = $acc['monthly'];
-			$dailyPay = round($monthly / 30, 2); //calculate everyday payment
-
 			if(empty($acc['date_paid'])){
-			
-				$no_days = $this->diffDays($date_started, $due_date); // get the number of days before due date
-				$fee = round($dailyPay * abs($no_days)); //calculate total payment
 
-				if(date('m', strtotime($acc['due_date'])) == 3){ // check if month is february-march because it only have 28-29 for month
-					$pment[] = array('no' => 1, 'pay' => $monthly);
+				$noMonths = $this->diffMonths($date_started, $todayDate);
+
+				if($noMonths == 0){
+					
+					$pment[] = array('date' => $acc['due_date'], 'formatted_date' => date('F d, Y', strtotime($acc['due_date'])));
+
 				}else{
-					$pment[] = array('no' => 1, 'pay' => $fee);
-				}
 
-				$no_months = $this->diffMonths($due_date, $todayDate); // get the no. of month between due date and todays month
-				
-				if($no_months < 0){
-					for($i=0; $i < abs($no_months); $i++){
-						
-						$pment[] = array('no' => $i+2 , 'pay' => $monthly + $fee );
-
-						$monthly += $monthly;
+					for($i=0; $i < abs($noMonths); $i++){
+						$dueDate = $this->getDuedates($date_started, $i+1);
+						$pment[] = array('date' => $dueDate, 'formatted_date' => date('F d, Y', strtotime($dueDate)));
 					}
 				}
-
+				$validator['due'] = $acc['date_started'];
 
 			}else{
 
-				$pment[] = array('no' => 1, 'pay' => $monthly);
+				$date_paid = Time::parse($acc['date_paid']);
+				$noMonths = $this->diffMonths($date_paid, $todayDate);
 
-				$no_months = $this->diffMonths($due_date, $todayDate);
-				
-				if($no_months < 0){
-					for($i=0; $i < abs($no_months); $i++){
-						
-						$pment[] = array('no' => $i+2 , 'pay' => $monthly+$monthly);
+				if($noMonths == 0){
+					
+					$pment[] = array('date' => $acc['due_date'], 'formatted_date' => date('F d, Y', strtotime($acc['due_date'])));
 
-						$monthly += $monthly;
+				}else{
+
+					for($i=0; $i < abs($noMonths); $i++){
+						$dueDate = $this->getDuedates($date_paid, $i+1);
+						$pment[] = array('date' => $dueDate, 'formatted_date' => date('F d, Y', strtotime($dueDate)));
 					}
+					
 				}
-			}
+
+				$validator['due'] = $acc['date_paid'];
+			}	
 			
 			$validator['success'] = true;
 			$validator['pment'] = $pment;
+			$validator['monthly'] = $acc['monthly'];
 		}
 
 		echo json_encode($validator);
 	}
 
-	public function diffDays($from, $to){
-		$diff = $from->difference($to);
-		$result = (int)$diff->Days;
-		return $result;
+	public function diffMonths($d1, $d2){
+
+		$ts1 = strtotime($d1);
+		$ts2 = strtotime($d2);
+
+		$year1 = date('Y', $ts1);
+		$year2 = date('Y', $ts2);
+
+		$month1 = date('m', $ts1);
+		$month2 = date('m', $ts2);
+
+		return $diff = (($year2 - $year1) * 12) + ($month2 - $month1);
 	}
-	public function diffMonths($from, $to){
-		$diff = $from->difference($to);
-		$result = $diff->Months;
-		return $result;
+
+	public function getDuedates($date, $no){
+
+		$dueDate = date('Y-m-01', strtotime($date->addMonths($no)));
+		$parseDate = Time::parse($dueDate);
+		$newdueDate = $parseDate->addDays(4);
+
+		return $newdueDate->toLocalizedString('MM/dd/yyyy');
 	}
 }

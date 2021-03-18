@@ -1,5 +1,5 @@
 <!-- create modal -->
-<div id="payModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="transactionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,33 +12,22 @@
                         <input type="text" id="account" class="form-control" readonly name="account" required="">
                     </div>
                     <div class="form-group">
-                        <label for="acount" class="control-label">Payment Date:</label>
-                        <input type="date" class="form-control" name="paymentDate" value="<?php echo date('Y-m-d'); ?>" required="" >
+                        <label for="acount" class="control-label">Date:</label>
+                        <input type="date" class="form-control" name="date_paid" value="<?= old('date_paid') ?>" required="">
                     </div>
                     <div class="form-group">
-                        <label for="subject" class="control-label">Payment for:</label>
-                        <select class="form-control" name="paymentDue" id="pment" onchange="calculatePay(this)">
-                        </select>
+                        <label for="acount" class="control-label">Amount:</label>
+                        <input type="text" id="amount" class="form-control" name="amount" required="">
                     </div>
                     <div class="form-group">
-                        <label for="acount" class="control-label">Total Payment:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                P
-                            </div>
-                            <input type="text" class="form-control" name="totalPay" id="to_pay" value="<?= old('to_pay') ?>" required>
-                        </div>
-                        
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="control-label">Notes:</label>
+                        <label for="description" class="control-label">Notes</label>
                         <textarea class="form-control" name="notes" placeholder="Write something here.."><?= old('notes') ?></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" id="account_id">
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-info waves-effect waves-light" type="submit">Pay Now</button>
+                    <button class="btn btn-success waves-effect waves-light" type="submit">Save Changes</button>
                 </div>
             </form>
         </div>
