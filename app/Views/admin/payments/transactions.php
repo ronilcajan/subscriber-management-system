@@ -14,7 +14,7 @@
                 <table  id="accountTable" class="table table-striped table-sm">
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th>Transaction ID.</th>
                             <th>Account</th>
                             <th>Amount Paid</th>
                             <th>Description</th>
@@ -25,9 +25,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no=1; foreach($transac as $row): ?>
+                        <?php foreach($transac as $row): ?>
                             <tr>
-                                <td><?= $no ?></td>
+                                <td><?= $row['id'] ?></td>
                                 <td><a href="<?= site_url('admin/account_info/').$row['acc_id'] ?>"><?= $row['account_name'] ?></a></td>
                                 <td>P <?= number_format($row['payment'],2) ?></td>
                                 <td>Payment for <?= date('F d, Y', strtotime($row['description'])) ?>.</td>
@@ -35,17 +35,15 @@
                                 <td><?= $row['notes'] ?></td>
                                 <td><?= $row['status']=='Paid' ? "<span class='label label-success'>Paid</span>" : "<span class='label label-danger'>Unpaid</span>" ?></td>
                                 <td>
-                                    <span data-id="<?= $row['id'] ?>" class="tooltip-success" href="javascript:void(0)" data-toggle="tooltip" title="Edit Transaction">
+                                    <span class="tooltip-success" data-toggle="tooltip" title="Edit Transaction" data-id="<?= $row['id'] ?>" onclick="getTransactions(this)" 
+                                    data-account="<?= $row['account_name'] ?>" data-date="<?= $row['p_date'] ?>" data-payment="<?= $row['payment'] ?>" data-notes="<?= $row['notes'] ?>">
                                         <a href="#transactionModal" class="text-success waves-effect waves-light m-l-5 m-t-5 " data-toggle="modal" >
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>  
                                     </span>
-                                    <a data-id="<?= $row['id'] ?>" class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" href="javascript:void(0)" data-toggle="tooltip" title="Delete Transaction">
-                                        <i class="fa fa fa-times"></i>
-                                    </a>
                                 </td>
                             </tr>
-                        <?php $no++; endforeach ?>
+                        <?php endforeach ?>
                     </tbody>
                     <tfoot>
                         <tr>

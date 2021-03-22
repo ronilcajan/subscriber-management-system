@@ -97,10 +97,12 @@ class Payments extends BaseController
 						'date_paid' => $this->request->getVar('paymentDue'),
 						'due_date' => $dueDatenow
 					];
+					
+					$name = $this->request->getVar('account');
 
 					$payment->set($pay_dtls)->where('account_id', $id)->update();
 
-					return redirect()->back()->with('message', 'Payment has been created!');
+					return redirect()->back()->with('message', 'Payment has been created for '.$name.' account !');
 				}
 				
 				return redirect()->back()->with('errors', 'Creating payment is not successfull. Please review and try again!');

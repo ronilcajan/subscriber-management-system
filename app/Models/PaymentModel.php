@@ -8,4 +8,5 @@ class PaymentModel extends Model{
     protected $primaryKey = 'id';
     protected $useSoftDeletes = true;
     protected $allowedFields = ['id','account_id','date_paid','due_date'];
+
 }

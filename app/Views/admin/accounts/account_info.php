@@ -76,7 +76,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Date</th>
+                            <th>Payment Date</th>
                             <th>Amount</th>
                             <th>Description</th>
                             <th>Notes</th>
@@ -98,7 +98,7 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Date</th>
+                            <th>Payment Date</th>
                             <th>Amount</th>
                             <th>Description</th>
                             <th>Notes</th>

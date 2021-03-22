@@ -19,6 +19,7 @@ $('#transactionTable').DataTable({
         searchPlaceholder: "Search..."
     }
 });
+
 $(".select2").select2();
 
 function changeAccStatus(that) {

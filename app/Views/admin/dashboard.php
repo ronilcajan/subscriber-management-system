@@ -8,9 +8,9 @@
             <div class="white-box">
                 <div class="media bg-primary">
                     <div class="media-body">
-                        <h3 class="info-count">154 <span class="pull-right"><i class="mdi mdi-checkbox-marked-circle-outline"></i></span></h3>
-                        <p class="info-text font-12">Bookings</p>
-                        <p class="info-ot font-15">Target<span class="label label-rounded">198</span></p>
+                        <h3 class="info-count"><?= $clients ?> <span class="pull-right"><i class="mdi mdi-account-multiple-outline"></i></span></h3>
+                        <p class="info-text font-12">Subscribers</p>
+                        <p class="info-ot font-15">Accounts<span class="label label-rounded"><?= $accounts ?></span></p>
                     </div>
                 </div>
             </div>
@@ -19,9 +19,9 @@
             <div class="white-box">
                 <div class="media bg-success">
                     <div class="media-body">
-                        <h3 class="info-count">68 <span class="pull-right"><i class="mdi mdi-comment-text-outline"></i></span></h3>
-                        <p class="info-text font-12">Complaints</p>
-                        <p class="info-ot font-15">Total Pending<span class="label label-rounded">154</span></p>
+                        <h3 class="info-count"><?= $unpaid ?> <span class="pull-right"><i class="mdi  mdi-checkbox-marked-circle-outline"></i></span></h3>
+                        <p class="info-text font-12">Unpaid</p>
+                        <p class="info-ot font-15">Paid<span class="label label-rounded"><?= $paid ?> </span></p>
                     </div>
                 </div>
             </div>
@@ -30,9 +30,9 @@
             <div class="white-box">
                 <div class="media bg-danger">
                     <div class="media-body">
-                        <h3 class="info-count">&#36;9475 <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
-                        <p class="info-text font-12">Profit</p>
-                        <p class="info-ot font-15">Pending<span class="label label-rounded">236</span></p>
+                        <h3 class="info-count">P <?= number_format($month['payment'],2) ?> <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
+                        <p class="info-text font-12">This Month</p>
+                        <p class="info-ot font-15">Today's Collection<span class="label label-rounded">P <?= number_format($daily['payment'],2) ?></span></p>
                     </div>
                 </div>
             </div>
@@ -41,9 +41,9 @@
             <div class="white-box">
                 <div class="media bg-warning">
                     <div class="media-body">
-                        <h3 class="info-count">&#36;124,356 <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
-                        <p class="info-text font-12">Total Profit</p>
-                        <p class="info-ot font-15">Pending<span class="label label-rounded">782</span></p>
+                        <h3 class="info-count">P <?= number_format($total['payment'],2) ?> <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
+                        <p class="info-text font-12">Total Income</p>
+                        <p class="info-ot font-15">This Year<span class="label label-rounded">P <?= number_format($year['payment'],2) ?></span></p>
                     </div>
                 </div>
             </div>
@@ -137,25 +137,42 @@
             </div>
         </div>
         <div class="col-md-3 col-sm-12">
-            <div class="white-box">
-                <h3 class="box-title m-b-0">Activity</h3>
-                <p class="text-muted m-b-20">Swipe Mode, ModeSwitch.</p>
-                <ul class="custom-timeline">
+            <div class="white-box" >
+                <h3 class="box-title m-b-0">Latest Activity</h3>
+                <ul class="custom-timeline" >
+                    <?php foreach($acti as $row): ?>
                     <li>
-                        <a target="_blank" href="https://www.totoprayogo.com/#">New Web Design</a>
-                        <a href="#" class="float-right">21 March, 2014</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
+                        <?php if(strpos($row['activity_type'] , 'New' ) !== False){
+                            echo "<a class='text-success' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-success'>".timeago($row['created_at'])."</a>";
+                        }elseif(strpos($row['activity_type'] ,'Update') !== False){
+                            echo "<a class='text-primary' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-primary'>".timeago($row['created_at'])."</a>";
+                        }else{
+                            echo "<a class='text-danger' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-danger'>".timeago($row['created_at'])."</a>";
+                        }
+                        ?>
+                        <p><?= $row['events'] ?></p>
+                        <p>By: <?= $row['username'] ?></p>
                     </li>
-                    <li>
-                        <a href="#">21 000 Job Seekers</a>
-                        <a href="#" class="float-right">4 March, 2014</a>
-                        <p>Curabitur purus sem, malesuada eu luctus eget, suscipit sed turpis. Nam pellentesque felis vitae justo accumsan, sed semper nisi sollicitudin...</p>
-                    </li>
-                    <li>
-                        <a href="#">Awesome Employers</a>
-                        <a href="#" class="float-right">1 April, 2014</a>
-                        <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
-                    </li>
+                    <?php endforeach ?>
+                    <?php 
+                        function timeago($date) {
+                            $timestamp = strtotime($date);	
+                            
+                            $strTime = array("second", "minute", "hour", "day", "month", "year");
+                            $length = array("60","60","24","30","12","10");
+                     
+                            $currentTime = time();
+                            if($currentTime >= $timestamp) {
+                                 $diff     = time()- $timestamp;
+                                 for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+                                 $diff = $diff / $length[$i];
+                                 }
+                     
+                                 $diff = round($diff);
+                                 return $diff . " " . $strTime[$i] . "(s) ago ";
+                            }
+                         }
+                    ?>
                 </ul>
             </div>
         </div>

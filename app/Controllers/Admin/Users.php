@@ -62,6 +62,10 @@ class Users extends BaseController
 							->where('user_id', $id)
 							->first();
 
+		$db = db_connect();
+		$query = $db->query("SELECT *,activity_log.created_at as created_at  FROM activity_log JOIN users ON users.id = activity_log.user_id WHERE activity_log.user_id=$id ORDER BY activity_log.created_at DESC");
+		$data['acti'] = $query->getResultArray();
+
 		$data['title'] = "User Info";
 		return view('admin/users/user_info',$data);
 	}

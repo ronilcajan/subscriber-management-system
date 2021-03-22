@@ -270,7 +270,7 @@
                                 <input name="id" value="<?= $subs['id'] ?>" type="hidden">
                                 <input name="acc_id" value="<?= $subs['acc_id'] ?>" type="hidden">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save Changes</button>
-                                <a class="btn btn-default" href="<?= site_url('admin/accounts') ?>">Cancel</a>
+                                <a class="btn btn-default" href="<?= site_url('admin/subscribers') ?>">Cancel</a>
                             </div>
                         </form>
                     </div>

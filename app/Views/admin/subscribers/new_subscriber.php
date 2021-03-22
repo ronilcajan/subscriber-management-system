@@ -270,7 +270,7 @@
                             <hr>
                             <div class="form-actions m-t-30">
                                 <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
-                                <button type="button" class="btn btn-default">Cancel</button>
+                                <a type="button" href="<?= site_url('admin/subscribers') ?>" class="btn btn-default">Cancel</a>
                             </div>
                         </form>
                     </div>

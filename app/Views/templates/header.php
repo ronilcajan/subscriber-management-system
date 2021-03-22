@@ -4,6 +4,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
+<?php $db = db_connect(); ?>
 <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>images/logo-transparent.png">
 <title><?= $title ?> | Waga Network Solutions</title>
 <!-- ===== Bootstrap CSS ===== -->

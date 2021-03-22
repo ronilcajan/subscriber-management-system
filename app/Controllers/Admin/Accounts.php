@@ -52,6 +52,7 @@ class Accounts extends BaseController
 									->join('accounts', 'accounts.id=transactions.account_id')
 									->join('subscribers', 'subscribers.id=accounts.subscriber_id')
 									->where('accounts.id', $id)
+									->where('transactions.status', 'Paid')
 									->findAll();
 
 		$data['title'] = "Account Info";
@@ -227,7 +228,7 @@ class Accounts extends BaseController
 
 					$payment->set($p_acc)->where('account_id', $id)->update();
 
-					return redirect()->back()->with('message', 'Account has been update!');
+					return redirect()->back()->with('message', 'Account has been updated!');
 				}
 				return redirect()->back()->withInput()->with('error', 'Updating new account is not successfull. Please review and try again!');
 			}

@@ -14,6 +14,11 @@ class Profile extends BaseController
 							->where('user_id', user_id())
 							->first();
 
+		$db = db_connect();
+		$id =user_id();
+		$query = $db->query("SELECT *,activity_log.created_at as created_at  FROM activity_log JOIN users ON users.id = activity_log.user_id WHERE activity_log.user_id=$id ORDER BY activity_log.created_at DESC");
+		$data['acti'] = $query->getResultArray();
+
 		$data['title'] = "My Profile";
 		return view('profile',$data);
 	}

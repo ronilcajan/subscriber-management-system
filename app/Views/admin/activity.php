@@ -6,91 +6,50 @@
         <div class="col-sm-12">
             <div class="white-box">
                 <h3 class="box-title m-b-0"><?= $title ?></h3>
-                <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
-                    <table  id="myTable" class="table table-striped table-sm">
+                <p class="text-muted m-b-20">Here you can view system acitivity.</p>
+                    <table id="myTable" class="table table-striped table-sm">
                         <thead>
                             <tr>
-                                <th>Movie Title</th>
-                                <th>Rank</th>
-                                <th>Year</th>
-                                <th>
-                                    <abbr >Rating</abbr>
-                                </th>
-                                <th>Gross</th>
+                                <th>No</th>
+                                <th>Username</th>
+                                <th>Events</th>
+                                <th>Activity Type</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Avatar</a></td>
-                                <td>1</td>
-                                <td>2009</td>
-                                <td>83%</td>
-                                <td>$2.7B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Titanic</a></td>
-                                <td>2</td>
-                                <td>1997</td>
-                                <td>88%</td>
-                                <td>$2.1B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">The Avengers</a></td>
-                                <td>3</td>
-                                <td>2012</td>
-                                <td>92%</td>
-                                <td>$1.5B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Harry Potter and the Deathly Hallows—Part 2</a></td>
-                                <td>4</td>
-                                <td>2011</td>
-                                <td>96%</td>
-                                <td>$1.3B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Frozen</a></td>
-                                <td>5</td>
-                                <td>2013</td>
-                                <td>89%</td>
-                                <td>$1.2B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Iron Man 3</a></td>
-                                <td>6</td>
-                                <td>2013</td>
-                                <td>78%</td>
-                                <td>$1.2B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Transformers: Dark of the Moon</a></td>
-                                <td>7</td>
-                                <td>2011</td>
-                                <td>36%</td>
-                                <td>$1.1B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">The Lord of the Rings: The Return of the King</a></td>
-                                <td>8</td>
-                                <td>2003</td>
-                                <td>95%</td>
-                                <td>$1.1B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Skyfall</a></td>
-                                <td>9</td>
-                                <td>2012</td>
-                                <td>92%</td>
-                                <td>$1.1B</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><a href="javascript:void(0)">Transformers: Age of Extinction</a></td>
-                                <td>10</td>
-                                <td>2014</td>
-                                <td>18%</td>
-                                <td>$1.0B</td>
-                            </tr>
+                        <?php $no=1; foreach($acti as $row){ ?>
+                                <tr>
+                                    <td><?= $no ?></td>
+                                    <td><?= $row['username'] ?></td>
+                                    <td><?= $row['events'] ?></td>
+                                    <td><?php
+                                        if(strpos($row['activity_type'] , 'New' ) !== False){
+
+                                            echo "<span class='label label-success'>".$row['activity_type']."</span>";
+
+                                        }elseif(strpos($row['activity_type'] ,'Update') !== False){
+
+                                            echo "<span class='label label-info'>".$row['activity_type']."</span>";
+
+                                        }else{
+                                            echo "<span class='label label-danger'>".$row['activity_type']."</span>";
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><?= $row['created_at'] ?></td>
+                                </tr>
+                            <?php $no++; } ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>Username</th>
+                                <th>Events</th>
+                                <th>Activity Type</th>
+                                <th>Date</th>
+                            </tr>
+                        </tfoot>
                     </table>
             </div>
         </div>

@@ -7,9 +7,9 @@
                         $id= user_id();
                         $db = db_connect();
                         $query = $db->query("SELECT `name`,img,username FROM users JOIN user_profile ON users.id = user_profile.user_id WHERE users.id=$id");
-                        $result = $query->getResultArray();
+                        $result = $query->getRow();
                     ?>
-                    <img src="<?= empty($result[0]['img']) ? site_url('/images/user.png') : site_url('uploads').'/'.$result[0]['img'] ?>" alt="user-img" class="img-circle">
+                    <img src="<?= empty($result->img) ? site_url('/images/user.png') : site_url('uploads').'/'.$result->img ?>" alt="user-img" class="img-circle">
                     <a href="javascript:void(0);" class="dropdown-toggle u-dropdown text-blue" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="badge badge-success">
                             <i class="fa fa-angle-down"></i>
@@ -23,7 +23,7 @@
                         <li><a href="<?= site_url('logout') ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </div>
-                <p class="profile-text m-t-15 font-16"><a href="<?= site_url('admin/profile') ?>"> <?= empty($result[0]['name']) ? $result[0]['username'] : ucwords($result[0]['name']) ?> </a></p>
+                <p class="profile-text m-t-15 font-16"><a href="<?= site_url('admin/profile') ?>"> <?= empty($result->name) ? $result->username : ucwords($result->name) ?> </a></p>
             </div>
         </div>
         <nav class="sidebar-nav">
@@ -48,14 +48,17 @@
                         <i class="icon-wallet fa-fw"></i> <span class="hide-menu"> Payments </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li> <a href="<?= site_url('admin/payments') ?>">View Payments</a> </li>
-                        <li> <a href="<?= site_url('admin/transactions') ?>">Transcations</a> </li>
+                        <li> <a href="<?= site_url('admin/transactions') ?>">Transactions</a> </li>
                         <li> <a href="<?= site_url('admin/collections') ?>">Collections</a> </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<?= site_url('admin/activity') ?>" aria-expanded="false">
-                        <i class="icon-globe fa-fw"></i> <span class="hide-menu"> Activity Logs</span>
-                    </a>
+                    <a class="waves-effect <?= strpos(uri_string(),'activity') || strpos(uri_string(),'attempts') ? 'active' : null ?>" href="javascript:void(0);" aria-expanded="false">
+                        <i class="icon-globe fa-fw"></i> <span class="hide-menu"> Activity Logs</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li> <a href="<?= site_url('admin/activity') ?>">System Activity</a> </li>
+                        <li> <a href="<?= site_url('admin/attempts') ?>">Login Attempts</a> </li>
+                    </ul>
                 </li>
                 <li>
                     <a class="<?= strpos(uri_string(),'user_info') ? 'active' : null ?>" href="<?= site_url('admin/users') ?>" aria-expanded="false">
