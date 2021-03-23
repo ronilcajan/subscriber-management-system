@@ -3,7 +3,7 @@
 use Config\Email;
 use CodeIgniter\Config\Services;
 use Myth\Auth\Entities\User;
-
+use App\Models\SystemModel;
 /**
  * Class EmailResetter
  *
@@ -24,10 +24,12 @@ class EmailResetter extends BaseResetter implements ResetterInterface
     {
         $email = Services::email();
         $config = new Email();
+        $sstem = new SystemModel();
+		$ss = $sstem->find(1);
 
         $settings = $this->getResetterSettings();
 
-        $sent = $email->setFrom($settings->fromEmail ?? $config->fromEmail, $settings->fromName ?? $config->fromName)
+        $sent = $email->setFrom($settings->fromEmail ?? $ss['email'], $settings->fromName ?? $ss['name'])
               ->setTo($user->email)
               ->setSubject(lang('Auth.forgotSubject'))
               ->setMessage(view($this->config->views['emailForgot'], ['hash' => $user->reset_hash]))

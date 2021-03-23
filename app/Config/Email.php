@@ -5,16 +5,16 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
+	
+	/**
+	 * @var string
+	 */
+	public $fromEmail;
 
 	/**
 	 * @var string
 	 */
-	public $fromEmail = 'jameronjame@gmail.com';
-
-	/**
-	 * @var string
-	 */
-	public $fromName = 'Waga Network Solutions';
+	public $fromName;
 
 	/**
 	 * @var string

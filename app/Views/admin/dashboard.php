@@ -113,7 +113,7 @@
                                         </a>
                                     </span>
                                     <?php endif ?>
-                                    <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success" href="<?= site_url('admin/update_account/').$row['acc_id']; ?>" data-toggle="tooltip" title="Send Email Notification">
+                                    <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success sendEmail" href="<?= site_url('admin/send_email/').$row['acc_id']; ?>" data-toggle="tooltip" title="Send Email Notification">
                                         <i class="fa fa-envelope-o"></i>
                                     </a>
                                 </td>

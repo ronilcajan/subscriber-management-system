@@ -3,7 +3,7 @@
 use Config\Email;
 use Config\Services;
 use Myth\Auth\Entities\User;
-
+use App\Models\SystemModel;
 /**
  * Class EmailActivator
  *
@@ -24,10 +24,11 @@ class EmailActivator extends BaseActivator implements ActivatorInterface
     {
         $email = Services::email();
         $config = new Email();
-
+        $sstem = new SystemModel();
+		$ss = $sstem->find(1);
         $settings = $this->getActivatorSettings();
 
-        $sent = $email->setFrom($settings->fromEmail ?? $config->fromEmail, $settings->fromName ?? $config->fromName)
+        $sent = $email->setFrom($settings->fromEmail ?? $ss['email'], $settings->fromName ?? $ss['name'])
               ->setTo($user->email)
               ->setSubject(lang('Auth.activationSubject'))
               ->setMessage(view($this->config->views['emailActivation'], ['hash' => $user->activate_hash]))

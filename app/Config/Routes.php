@@ -66,12 +66,14 @@ $routes->group('admin', function($routes) {
 
 	$routes->post('getPayment', 'Admin\Payments::getPayment');
 	$routes->post('paynow', 'Admin\Payments::paynow');
+	$routes->add('send_email/(:num)', 'Admin\Payments::sendEmail/$1');
 
 	$routes->post('updateTrans', 'Admin\Transactions::update');
 
 	$routes->add('attempts', 'Admin\Activity::attempts');
 
 	$routes->add('system_info', 'Admin\Dashboard::system');
+	$routes->post('updateSystem', 'Admin\Dashboard::updateSystem');
 });
 /*
  * --------------------------------------------------------------------

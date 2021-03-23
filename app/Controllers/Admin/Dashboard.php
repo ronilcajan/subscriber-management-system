@@ -4,6 +4,7 @@ use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\SubscriberModel;
 use App\Models\TransactionModel;
+use App\Models\SystemModel;
 
 class Dashboard extends BaseController
 {
@@ -55,7 +56,156 @@ class Dashboard extends BaseController
 
 	public function system(){
 
+		$system = new SystemModel();
+
+		$data['info'] = $system->find(1);
+
 		$data['title'] = "System Info";
 		return view('system',$data);
+	}
+
+	public function updateSystem(){
+		
+		if ($this->request->getMethod() == 'post') {
+
+			$rules = [
+				'name' => 'required',
+				'dname' => 'required',
+				'tagline' 	=> 'required',
+				'email' => 'required|valid_email',
+				'phone' 	=> 'required',
+				'address' 	=> 'required',
+			];
+			$errors = [
+				'name' 	=> [
+					'required' => 'Business name is required.',
+				],
+				'dname' 	=> [
+					'required' => 'Dashboard name is required.',
+				],
+				'tagline' 	=> [
+					'required' => 'Business tagline is required.',
+				],
+				'email' 	=> [
+					'required' => 'Business email address is required.',
+				],
+				'phone' 	=> [
+					'required' => 'Business phonenumber is required.',
+				],
+				'address' 	=> [
+					'required' => 'Business address is required.',
+				],
+			];
+
+			if (!$this->validate($rules,$errors)) {
+
+				return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+				
+			}else{
+				$system = new SystemModel();
+				$icon = $this->request->getFile('icon');
+				$logo = $this->request->getFile('logo');
+
+				if($icon->isValid() && $logo->isValid()){
+					$IconName = $icon->getRandomName();
+					$icon->move('uploads', $IconName);
+
+					$LogoName = $logo->getRandomName();
+					$logo->move('uploads', $LogoName);
+
+					if($icon->hasMoved() && $logo->hasMoved()){
+						$newIconName = 'new-'.$IconName;
+						$img = \Config\Services::image()
+							->withFile('uploads/'.$IconName)
+							->resize(36, 36, true, 'width')
+							->save('uploads/'.$newIconName);
+
+						$data = [
+							'id' => $this->request->getVar('id'),
+							'name' => $this->request->getVar('name'),
+							'dname' => $this->request->getVar('dname'),
+							'tagline' => $this->request->getVar('tagline'),
+							'email' => $this->request->getVar('email'),
+							'phone' => $this->request->getVar('phone'),
+							'address' => $this->request->getVar('address'),
+							'icon' => $newIconName,
+							'logo' => $LogoName,
+						];
+						
+						$update = $system->save($data);
+						
+						return redirect()->back()->with('message', 'System information has been updated!');
+					}
+				}
+
+				if($icon->isValid() && !$logo->isValid()){
+					$IconName = $icon->getRandomName();
+					$icon->move('uploads', $IconName);
+
+					if($icon->hasMoved()){
+						$newIconName = 'new-'.$IconName;
+						$img = \Config\Services::image()
+							->withFile('uploads/'.$IconName)
+							->resize(36, 36, true, 'width')
+							->save('uploads/'.$newIconName);
+
+						$data = [
+							'id' => $this->request->getVar('id'),
+							'name' => $this->request->getVar('name'),
+							'dname' => $this->request->getVar('dname'),
+							'tagline' => $this->request->getVar('tagline'),
+							'email' => $this->request->getVar('email'),
+							'phone' => $this->request->getVar('phone'),
+							'address' => $this->request->getVar('address'),
+							'icon' => $newIconName,
+						];
+
+						$update = $system->save($data);
+						
+						return redirect()->back()->with('message', 'System information has been updated!');
+					}
+				}
+
+				if($logo->isValid() && !$icon->isValid()){
+					$LogoName = $logo->getRandomName();
+					$logo->move('uploads', $LogoName);
+
+					if($logo->hasMoved()){
+
+						$data = [
+							'id' => $this->request->getVar('id'),
+							'name' => $this->request->getVar('name'),
+							'dname' => $this->request->getVar('dname'),
+							'tagline' => $this->request->getVar('tagline'),
+							'email' => $this->request->getVar('email'),
+							'phone' => $this->request->getVar('phone'),
+							'address' => $this->request->getVar('address'),
+							'logo' => $LogoName,
+						];
+						$update = $system->save($data);
+						
+						return redirect()->back()->with('message', 'System information has been updated!');
+					}
+				}
+				if(!$logo->isValid() && !$icon->isValid()){
+					$data = [
+						'id' => $this->request->getVar('id'),
+						'name' => $this->request->getVar('name'),
+						'dname' => $this->request->getVar('dname'),
+						'tagline' => $this->request->getVar('tagline'),
+						'email' => $this->request->getVar('email'),
+						'phone' => $this->request->getVar('phone'),
+						'address' => $this->request->getVar('address'),
+					];
+
+					$update = $system->save($data);
+					
+					return redirect()->back()->with('message', 'System information has been updated!');
+				}
+
+				return redirect()->back()->withInput()->with('error', 'Updating system information is not successful. Please review and try again.');
+			}
+		}
+		return redirect()->back()->withInput()->with('error', 'Submitted form is now allowed!');
 	}
 }

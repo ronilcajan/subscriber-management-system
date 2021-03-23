@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    $(".sendEmail").on('click', function(){
+        $(".preloader").show();
+    });
+});
+
 function showPment(that){
     var id = $(that).attr('data-id');
     var account = $(that).attr('data-account');

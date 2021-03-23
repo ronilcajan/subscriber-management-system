@@ -1,20 +1,22 @@
+<?php $db = db_connect();
+    $query = $db->query("SELECT * FROM system_info WHERE id=1");
+    $result = $query->getRow();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
    <!-- Metas -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
-    <meta name="description" content="WagaNetwork Solutions" />
+    <meta name="description" content="<?= empty($result->tagline) ? 'Waga Network Solutions' : $result->name ?>" />
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Title  -->
-    
-    <title><?= $title ?> | Waga Network Solutions</title>
+    <title><?= $title ?> | <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?></title>
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="home_files/assets/css/bootstrap.min.css" type="text/css">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>images/logo-transparent.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= empty($result->icon) ? site_url().'images/logo-transparent.png' : site_url('uploads/').$result->icon ?>">
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="home_files/assets/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="home_files/assets/css/icofont.css" type="text/css">
@@ -87,7 +89,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="slidertext">
-                                <h1>Explore over the World with Waga Network Solutions</h1>
+                                <h1>Explore over the World with <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?></h1>
                                 <p>Striving towards an era of unlimited data.</p>
                             </div>
                         </div>
@@ -111,7 +113,7 @@
                     <div class="col-lg-6">
                         <div class="about-text">
                             <h1 class="mb-20px">About Us</h1>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                             <p class="mb-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodnsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             <a href="#" class="ournet-btn">Read More</a>
                         </div>
@@ -182,42 +184,42 @@
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Unlimited Package</h4>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-2.png" alt="">
                             <h4>Dedicated IP Server</h4>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-3.png" alt="">
                             <h4>Fiver Optic Network</h4>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Stable Connections</h4>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-5.png" alt="">
                             <h4>Buffer Free Browsing</h4>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-6.png" alt="">
                             <h4>24/7 Customer Support</h4>
-                            <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                         </div>
                     </div>
                 </div>
@@ -322,7 +324,7 @@
                                 <div class="col-lg-5">
                                     <div class="abpi-t">
                                         <h4>We'll help you get back to work</h4>
-                                        <p>Waga Network Solutions is a privately held 4G wireless broadband operator. It uses WiMAX technology.</p>
+                                        <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a privately held 4G wireless broadband operator. It uses WiMAX technology.</p>
                                         <a class="ournet-btn" href="#">Learn More</a>
                                     </div>
                                 </div>
@@ -344,7 +346,7 @@
                                 <div class="quate">
                                     <img src="home_files/assets/images/quate.png" alt="">
                                 </div>
-                                <p>‘’Waga Network Solutions is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
+                                <p>‘’<?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
                                 <h3>Farnando Toress</h3>
                                 <span>Student</span>
                             </div>
@@ -352,7 +354,7 @@
                                 <div class="quate">
                                     <img src="home_files/assets/images/quate.png" alt="">
                                 </div>
-                                <p>‘’Waga Network Solutions is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
+                                <p>‘’<?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
                                 <h3>Farnando Toress</h3>
                                 <span>Student</span>
                             </div>
@@ -381,9 +383,9 @@
                        <div class="col-lg-3 col-md-6">
                            <div class="footer-widget">
                                <div class="footer-logo">
-                                   <a href="#"><img width="150" src="<?= site_url() ?>images/logo.jpg" alt=""></a>
+                                   <a href="#"><img width="150" src="<?= empty($result->logo) ? site_url().'images/logo.jpg' : site_url('uploads/').$result->logo ?>" alt=""></a>
                                </div>
-                               <p>Waga Network Solutions is a private broadband internet service provider  with 12 years of experience.</p>
+                               <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
                            </div>
                        </div>
                        <div class="col-lg-2 offset-lg-1 col-md-6">
@@ -391,12 +393,10 @@
                                <h4 class="footer-title">Links</h4>
                                <div class="footer-widget-menu">
                                    <ul>
-                                       <li><a href="#">Contact Us</a></li>
-                                       <li><a href="#">Customer Service</a></li>
-                                       <li><a href="#">Promotions</a></li>
-                                       <li><a href="#">Media</a></li>
-                                       <li><a href="#">Find Us</a></li>
-                                       <li><a href="#">Faq</a></li>
+                                        <li><a class="scroll-animite" href="#home">Home</a></li>
+                                        <li><a class="scroll-animite" href="#about">About Us</a></li>
+                                        <li><a class="scroll-animite" href="#service">Services </a></li>
+                                        <li><a class="scroll-animite" href="#feature">Features</a></li>
                                    </ul>
                                </div>
                            </div>
@@ -406,12 +406,16 @@
                                <h4 class="footer-title">Other Links</h4>
                                <div class="footer-widget-menu">
                                    <ul>
-                                       <li><a href="#">Contact Us</a></li>
-                                       <li><a href="#">Customer Service</a></li>
-                                       <li><a href="#">Promotions</a></li>
-                                       <li><a href="#">Media</a></li>
-                                       <li><a href="#">Find Us</a></li>
-                                       <li><a href="#">Faq</a></li>
+                                        <li><a class="scroll-animite" href="#pricing">Pricing</a></li>
+                                        <li><a class="scroll-animite" href="#review">Review</a></li>
+                                        <li><a class="scroll-animite" href="#contact">Contact</a></li>
+                                        <li>
+                                            <?php if(logged_in()): ?>
+                                                <a class="scroll-animite" href="<?= site_url('success-login') ?>">Dashboard</a>
+                                            <?php else: ?>
+                                                <a class="scroll-animite" href="<?= site_url('login') ?>">Login</a>
+                                            <?php endif ?>
+                                        </li>
                                    </ul>
                                </div>
                            </div>
@@ -421,9 +425,9 @@
                                <h4 class="footer-title">Address</h4>
                               <div class="contact-info">
                                   <ul>
-                                      <li>28 Division St, New York, NY 10002, USA</li>
-                                      <li>Email: ournet@mail.Com</li>
-                                      <li>Phone: + (321) 984 754</li>
+                                      <li><?= empty($result->address) ? 'Address' : $result->address ?></li>
+                                      <li>Email: <?= empty($result->email) ? 'Email' : $result->email ?></li>
+                                      <li>Phone: <?= empty($result->phone) ? 'Phone' : $result->phone ?></li>
                                   </ul>
                               </div>
                            </div>
@@ -436,7 +440,7 @@
                    <div class="row">
                        <div class="col-md-6">
                             <div class="footer-copyright-item">
-                                <p>Copyright &copy; 2021 Waga Network Solutions. Design & Developed By <a class="footer-links" href="#">R Labs</a>.</p>
+                                <p>Copyright &copy; 2021 <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?>. Design & Developed By <a class="footer-links" href="#">R Labs</a>.</p>
                             </div>
                        </div>
                        <div class="col-md-6">

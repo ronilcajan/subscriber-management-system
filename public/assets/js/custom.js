@@ -7,7 +7,7 @@ $(function() {
     $(".preloader").fadeOut();
 
     /* ========== Changes Takes Place On Body Resize Event ========== */
-
+    
     var set = function() {
         var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
         var topOffset = 60;

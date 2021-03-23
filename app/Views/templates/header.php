@@ -4,9 +4,12 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<?php $db = db_connect(); ?>
-<link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>images/logo-transparent.png">
-<title><?= $title ?> | Waga Network Solutions</title>
+<?php $db = db_connect();
+$query = $db->query("SELECT `icon`,`name` FROM system_info WHERE id=1");
+$result = $query->getRow();
+?>
+<link rel="icon" type="image/png" sizes="32x32" href="<?= empty($result->icon) ? site_url().'images/logo-transparent.png' : site_url('uploads/').$result->icon ?>">
+<title><?= $title ?> | <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?></title>
 <!-- ===== Bootstrap CSS ===== -->
 
 <link href="<?= site_url() ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">

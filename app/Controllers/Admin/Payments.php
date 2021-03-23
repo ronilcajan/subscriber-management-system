@@ -6,6 +6,7 @@ use App\Models\SubscriberModel;
 use App\Models\PaymentModel;
 use App\Models\TransactionModel;
 use CodeIgniter\I18n\Time;
+use App\Models\SystemModel;
 
 class Payments extends BaseController
 {
@@ -175,6 +176,87 @@ class Payments extends BaseController
 		echo json_encode($validator);
 	}
 
+	public function sendEmail($id){
+
+		$pment['amount'] = array();
+
+		$account = new AccountModel();
+		
+		$acc = $account->join('payments','accounts.id=payments.account_id')->find($id);
+		$subs = $account->join('subscribers','subscribers.id=accounts.subscriber_id')->find($id);
+
+		$date_started = Time::parse($acc['date_started']);
+		$due_date = Time::parse($acc['due_date']);
+		$todayMonth = Time::parse(date('Y-m-01'));
+
+		$monthly = $acc['monthly'];
+		$todayDate = $todayMonth->addDays($acc['schedule'] - 1); // format todays date into 5th day of the month to match the schedule
+		$perDay = $monthly / 30;
+		
+
+		if(empty($acc['date_paid'])){
+
+			$noMonths = $this->diffMonths($date_started, $todayDate);
+			
+			if($date_started->getDay() == $due_date->getDay()){
+				$total = $monthly;
+			}else{
+				$days = $date_started->difference($due_date);
+				$totalDay = $days->getDays(); 
+				$total = round(($totalDay) * $perDay , 2);
+			}
+
+			if($noMonths == 0){
+				$pment['amount'][] = array('amount' => $total, 'formatted_date' => date('F d, Y', strtotime($due_date)));
+			}else{
+				$pment['amount'][] = array('amount' => $total, 'formatted_date' => date('F d, Y', strtotime($due_date)));
+				for($i=1; $i < abs($noMonths); $i++){
+					$dueDate = $this->getDuedates($due_date, $i);
+					$pment['amount'][] = array('amount' => $total + $monthly, 'formatted_date' => date('F d, Y', strtotime($dueDate)));
+					$monthly+=$monthly;
+				}
+			}
+
+		}else{
+
+			$date_paid = Time::parse($acc['date_paid']);
+			$noMonths = $this->diffMonths($date_paid, $todayDate);
+			
+			if($noMonths == 0){
+				$pment['amount'][] = array('amount' => $monthly, 'formatted_date' => date('F d, Y', strtotime($due_date)));
+			}else{
+				for($i=0; $i < abs($noMonths); $i++){
+					$dueDate = $this->getDuedates($date_paid, $i+1);
+					$pment['amount'][] = array('amount' => $monthly , 'formatted_date' => date('F d, Y', strtotime($dueDate)));
+					$monthly+=$monthly;
+				}
+			}
+		}	
+
+		$pment['name'] = $subs['name'];
+		$pment['account'] = $acc['account_name'];
+
+		$sstem = new SystemModel();
+		$ss = $sstem->find(1);
+
+		$email = \Config\Services::email();
+		$email->setFrom($ss['email'], $ss['name']);
+		$email->setTo($subs['email']);
+
+		$email->setSubject('Payment Notification');
+		
+		$template = view('templates/email_template', $pment);
+
+		$email->setMessage($template);
+
+		if (! $email->send())
+		{
+			return redirect()->back()->with('errors', 'Sending email notification not successfull.');
+		}
+		return redirect()->back()->with('message', 'Success! Email notification has been sent.');
+
+	}
+
 	public function diffMonths($d1, $d2){
 
 		$ts1 = strtotime($d1);
@@ -197,4 +279,6 @@ class Payments extends BaseController
 
 		return $newdueDate->toLocalizedString('MM/dd/yyyy');
 	}
+
+
 }
