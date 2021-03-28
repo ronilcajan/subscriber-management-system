@@ -24,76 +24,87 @@
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
+            <?php 
+                    $notif = $db->query("SELECT *, COUNT(transactions.id) as num, transactions.created_at as created FROM transactions JOIN accounts ON accounts.id=transactions.account_id 
+                                        WHERE transactions.status='Pending' ORDER By p_date DESC");
+                    $res = $notif->getRow();
+                    $show = $notif->getResultArray();
+                ?>
             <li class="dropdown">
                 <a class="dropdown-toggle waves-effect waves-light font-20" data-toggle="dropdown" href="javascript:void(0);">
                     <i class="icon-bell"></i>
-                    <span class="badge badge-xs badge-danger">3</span>
+                    <span class="badge badge-xs badge-danger"><?= empty($res->num) ? null : $res->num ?></span>
                 </a>
+               
                 <ul class="dropdown-menu mailbox animated slideInUp">
                     <li>
-                        <div class="drop-title">4 collections to approve.</div>
+                        <div class="drop-title"><?= empty($res->num) ? 'No Payment/s Collected.' : $res->num.' Payment/s Collected.' ?> </div>
                     </li>
                     <li>
                         <div class="message-center">
+                            <?php if(!$show[0]['id']==null): ?>
+                            <?php foreach($show as $row): ?>
                             <a href="javascript:void(0);">
-                                
                             <div class="user-img">
-                                    <img src="../plugins/images/users/2.jpg" alt="user" class="img-circle">
+                                    <img src="<?= site_url() ?>images/user.png" alt="user" class="img-circle">
                                     <span class="profile-status busy pull-right"></span>
                                 </div>
                                 <div class="mail-contnet">
-                                    <h5>Pavan kumar</h5>
-                                    <span class="mail-desc">Just see the my admin!</span>
-                                    <span class="time">9:30 AM</span>
+                                    <h5><?= ucwords($row['account_name']) ?></h5>
+                                    <span class="mail-desc">Payment collected.</span>
+                                    <span class="time"><?= timeago1($row['created']) ?></span>
                                 </div>
                             </a>
-                            <a href="javascript:void(0);">
-                                <div class="user-img">
-                                    <img src="../plugins/images/users/2.jpg" alt="user" class="img-circle">
-                                    <span class="profile-status busy pull-right"></span>
-                                </div>
-                                <div class="mail-contnet">
-                                    <h5>Sonu Nigam</h5>
-                                    <span class="mail-desc">I've sung a song! See you at</span>
-                                    <span class="time">9:10 AM</span>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <div class="user-img">
-                                    <img src="../plugins/images/users/3.jpg" alt="user" class="img-circle"><span class="profile-status away pull-right"></span>
-                                </div>
-                                <div class="mail-contnet">
-                                    <h5>Arijit Sinh</h5>
-                                    <span class="mail-desc">I am a singer!</span>
-                                    <span class="time">9:08 AM</span>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <div class="user-img">
-                                    <img src="../plugins/images/users/4.jpg" alt="user" class="img-circle">
-                                    <span class="profile-status offline pull-right"></span>
-                                </div>
-                                <div class="mail-contnet">
-                                    <h5>Pavan kumar</h5>
-                                    <span class="mail-desc">Just see the my admin!</span>
-                                    <span class="time">9:02 AM</span>
-                                </div>
-                            </a>
+                            <?php endforeach ?>
+                            <?php else: ?>
+                                <a href="javascript:void(0);">
+                                    <div class="user-img">
+                                        <img src="<?= site_url() ?>images/user.png" alt="user" class="img-circle">
+                                        <span class="profile-status busy pull-right"></span>
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <span class="mail-desc">Nothing to show.</span>
+                                    </div>
+                                </a>
+                            <?php endif ?>
+                            <?php 
+                        function timeago1($date) {
+                            $timestamp = strtotime($date);	
+                            
+                            $strTime = array("second", "minute", "hour", "day", "month", "year");
+                            $length = array("60","60","24","30","12","10");
+                     
+                            $currentTime = time();
+                            if($currentTime >= $timestamp) {
+                                 $diff     = time()- $timestamp;
+                                 for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+                                 $diff = $diff / $length[$i];
+                                 }
+                     
+                                 $diff = round($diff);
+                                 return $diff . " " . $strTime[$i] . "(s) ago ";
+                            }
+                         }
+                    ?>
                         </div>
+                        
                     </li>
                     <li>
-                        <a class="text-center" href="javascript:void(0);">
-                            <strong>See all notifications</strong>
+                        <a class="text-center" href="<?= site_url('admin/collections') ?>">
+                            <strong>See all</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="right-side-toggle">
-                <a class="right-side-toggler waves-effect waves-light b-r-0 font-20" href="<?= site_url() ?>admin/system_info">
-                    <i class="icon-settings"></i>
-                </a>
-            </li>
+            <?php if(in_groups('admin')):?>
+                <li class="right-side-toggle">
+                    <a class="right-side-toggler waves-effect waves-light b-r-0 font-20" href="<?= site_url() ?>admin/system_info">
+                        <i class="icon-settings"></i>
+                    </a>
+                </li>
+            <?php endif ?>
+            
         </ul>
     </div>
 </nav>

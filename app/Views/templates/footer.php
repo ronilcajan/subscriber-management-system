@@ -46,4 +46,3 @@
 <script src="<?= site_url() ?>assets/js/account.js"></script>
 <script src="<?= site_url() ?>assets/js/payment.js"></script>
 <script src="<?= site_url() ?>assets/js/transaction.js"></script>
-

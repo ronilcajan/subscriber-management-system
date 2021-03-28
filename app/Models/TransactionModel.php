@@ -16,7 +16,7 @@ class TransactionModel extends Model{
     protected function insertActivity(array $data){
 
         $db = db_connect();
-
+        
         $id = user_id();
         $events = 'Account ID: ['.$data['data']['account_id'].'] paid '.$data['data']['description'].' due date.';
         $type = 'New Payment';
@@ -27,12 +27,20 @@ class TransactionModel extends Model{
     protected function insert_updateActivity(array $data){
 
         $db = db_connect();
-
-        $id = user_id();
-        $events = 'Transaction ID: ['.$data['data']['id'].'] has been updated!';
-        $type = 'Update Payment';
-        $query = $db->query("INSERT INTO activity_log (events,activity_type,`user_id`) VALUES('$events','$type', $id)");
-        return $data;
+        if(!isset($data['data']['account_name'])){
+            $user_id = user_id();
+            $type = 'Payment Approved';
+            $events = 'Transaction ID: ['.$data['data']['id'].'] has been approved!';
+            $query = $db->query("INSERT INTO activity_log (events,activity_type,`user_id`) VALUES('$events','$type', $user_id)");
+            return $data;
+        }else{
+            $id = user_id();
+            $events = 'Transaction ID: ['.$data['data']['id'].'] has been updated!';
+            $type = 'Update Payment';
+            $query = $db->query("INSERT INTO activity_log (events,activity_type,`user_id`) VALUES('$events','$type', $id)");
+            return $data;
+        }
+       
     }
 
 }

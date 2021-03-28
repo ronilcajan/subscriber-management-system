@@ -31,6 +31,10 @@
                                         }elseif(strpos($row['activity_type'] ,'Update') !== False){
 
                                             echo "<span class='label label-info'>".$row['activity_type']."</span>";
+                                        
+                                        }elseif(strpos($row['activity_type'] ,'Approved') !== False){
+
+                                            echo "<span class='label label-info'>".$row['activity_type']."</span>";
 
                                         }else{
                                             echo "<span class='label label-danger'>".$row['activity_type']."</span>";

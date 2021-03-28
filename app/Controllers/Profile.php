@@ -2,6 +2,7 @@
 
 use App\Controllers\BaseController;
 use App\Models\ProfileModel;
+use App\Models\SystemModel;
 use Myth\Auth\Models\UserModel;
 
 class Profile extends BaseController
@@ -13,6 +14,10 @@ class Profile extends BaseController
 							->join('users','user_profile.user_id = users.id')
 							->where('user_id', user_id())
 							->first();
+
+		$system = new SystemModel();
+
+		$data['info'] = $system->find(1);
 
 		$db = db_connect();
 		$id =user_id();

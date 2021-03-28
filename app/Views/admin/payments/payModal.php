@@ -5,7 +5,14 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Create Payment</h4> </div>
-            <form action="<?= base_url('admin/paynow') ?>" method="POST">
+                <?php if(in_groups('admin')):?>
+                    <form action="<?= base_url('admin/paynow') ?>" method="POST">
+                <?php elseif(in_groups('staff')):?>
+                    <form action="<?= base_url('staff/paynow') ?>" method="POST">
+                <?php else: ?>
+                    <form action="<?= base_url('collector/paynow') ?>" method="POST">
+                <?php endif ?>
+            
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="acount" class="control-label">Account name:</label>

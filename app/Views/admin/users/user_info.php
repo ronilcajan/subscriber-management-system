@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-3 col-xs-12">
             <div class="white-box">
-                <div class="user-bg"> <img width="100%" alt="user" src="<?= site_url() ?>images/logo.jpg">
+                <div class="user-bg"> <img width="100%" alt="user" src="<?= empty($info['logo']) ? site_url('images/logo.jpg') : site_url('uploads').'/'.$info['logo'] ?>">
                     <div class="overlay-box">
                         <div class="user-content">
                             <a href="javascript:void(0)">

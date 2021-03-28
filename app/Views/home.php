@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-3">
                         <div class="logo">
-                            <a href="#"><img width="100" src="<?= site_url() ?>images/logo.jpg" alt=""></a>
+                            <a href="/"><img width="100" src="<?= empty($result->logo) ? site_url().'images/logo.jpg' : site_url('uploads/').$result->logo ?>" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-8 col-9">

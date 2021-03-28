@@ -16,7 +16,32 @@ class Collections extends BaseController
 									->findAll();
 
 		$data['title'] = "Collections";
-		return view('admin/payments/collections',$data);
+
+		if(in_groups('admin')){
+			return view('admin/payments/collections',$data);
+		}
+		if(in_groups('collector')){
+			return view('collector/collections',$data);
+		}
+
+	}
+
+	public function approve($id){
+
+		$accModel = new TransactionModel();
+
+		$data = [
+			'id' => $id,
+			'status' => 'Paid',
+			'updated_at' => date('y-n-j G:i:s')
+		];
+
+		$approve = $accModel->save($data);
+
+		if($approve){
+			
+			return redirect()->back()->with('message', 'Transaction has been approved!');
+		}
 	}
 
 }

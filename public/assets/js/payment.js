@@ -10,10 +10,37 @@ function showPment(that){
 
     $("#account").val(account);
     $("#account_id").val(id);
-
     $.ajax({
         type: "POST",
         url: SITE_URL+"/admin/getPayment",
+        data: {
+            id:id
+        },
+        dataType: "json",
+        success: function(response) {
+            console.log(response);
+            if(response.success === true){
+                $('#pment').html('<option value="">Select Date</option>');
+                $.each(response.pment, function( index, value ) {
+                    $('#pment').append('<option value="'+value.date +'">'+value.formatted_date+'</option>');
+                });
+                $("#pment").attr('date-due', response.due);
+                $("#pment").attr('date-monthly', response.monthly);
+            }
+        }
+    });
+
+}
+
+function showPmentC(that){
+    var id = $(that).attr('data-id');
+    var account = $(that).attr('data-account');
+
+    $("#account").val(account);
+    $("#account_id").val(id);
+    $.ajax({
+        type: "POST",
+        url: SITE_URL+"/collector/getPayment",
         data: {
             id:id
         },

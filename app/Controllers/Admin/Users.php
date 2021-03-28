@@ -4,7 +4,7 @@ use App\Controllers\BaseController;
 use App\Models\ProfileModel;
 use \Myth\Auth\Models\UserModel;
 use CodeIgniter\I18n\Time;
-
+use App\Models\SystemModel;
 
 class Users extends BaseController
 {
@@ -61,6 +61,10 @@ class Users extends BaseController
 							->join('users','user_profile.user_id = users.id')
 							->where('user_id', $id)
 							->first();
+
+		$system = new SystemModel();
+
+		$data['info'] = $system->find(1);
 
 		$db = db_connect();
 		$query = $db->query("SELECT *,activity_log.created_at as created_at  FROM activity_log JOIN users ON users.id = activity_log.user_id WHERE activity_log.user_id=$id ORDER BY activity_log.created_at DESC");

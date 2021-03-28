@@ -60,13 +60,13 @@
                                 </td>
                                 <td>
                                     <?php if ($now > $due_date): ?>
-                                    <span class="tooltip-danger" data-toggle="tooltip" title="Pay Now" onclick="showPment(this)" date-due="<?= $row['monthly'] ?>" data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
+                                    <span class="tooltip-danger" data-toggle="tooltip" title="Create Payment" onclick="showPment(this)" date-due="<?= $row['monthly'] ?>" data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
                                         <a class="text-danger waves-effect waves-light m-l-5 m-t-5" href="#payModal" data-toggle="modal" >
                                             <i class="fa fa-product-hunt"></i>
                                         </a>
                                     </span>
                                     <?php else: ?>
-                                        <span class="tooltip-primary" data-toggle="tooltip" title="Pay Now" onclick="showPment(this)" date-due="<?= $row['monthly'] ?>" data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
+                                        <span class="tooltip-primary" data-toggle="tooltip" title="Create Payment" onclick="showPment(this)" date-due="<?= $row['monthly'] ?>" data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
                                         <a class="text-primary waves-effect waves-light m-l-5 m-t-5" href="#payModal" data-toggle="modal" >
                                             <i class="fa fa-product-hunt"></i>
                                         </a>

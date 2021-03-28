@@ -3,60 +3,6 @@
 
 <div class="container-fluid">
 <?= view('Myth\Auth\Views\_message_block') ?>
-
-    <div class="row colorbox-group-widget">
-        <div class="col-md-3 col-sm-6 info-color-box">
-            <div class="white-box">
-                <div class="media bg-primary">
-                    <div class="media-body">
-                        <h3 class="info-count"><?= $clients ?> <span class="pull-right"><i class="mdi mdi-account-multiple-outline"></i></span></h3>
-                        <p class="info-text font-12">Subscribers</p>
-                        <p class="info-ot font-15">Accounts<span class="label label-rounded"><?= $accounts ?></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 info-color-box">
-            <div class="white-box">
-                <div class="media bg-success">
-                    <div class="media-body">
-                        <h3 class="info-count">
-                        <?php $no=0; foreach($subs as $row): ?>
-                            <?php $now = strtotime(date('Y-m-d'));  $due_date = strtotime($row['due_date']); ?>
-                                <?php if($due_date < $now):  $no++; ?><?php endif ?>
-                            <?php endforeach ?> <?= $no; ?><span class="pull-right"><i class="mdi  mdi-checkbox-marked-circle-outline"></i></span></h3>
-                        <p class="info-text font-12">Unpaid</p>
-                        <p class="info-ot font-15">Paid<span class="label label-rounded"> <?php $no=0; foreach($subs as $row): ?>
-                            <?php $now = strtotime(date('Y-m-d'));  $due_date = strtotime($row['due_date']); ?>
-                                <?php if($due_date > $now):  $no++; ?><?php endif ?>
-                            <?php endforeach ?> <?= $no; ?></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 info-color-box">
-            <div class="white-box">
-                <div class="media bg-danger">
-                    <div class="media-body">
-                        <h3 class="info-count">P <?= number_format($month['payment'],2) ?> <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
-                        <p class="info-text font-12">This Month</p>
-                        <p class="info-ot font-15">Today's Collection<span class="label label-rounded">P <?= number_format($daily['payment'],2) ?></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 info-color-box">
-            <div class="white-box">
-                <div class="media bg-warning">
-                    <div class="media-body">
-                        <h3 class="info-count">P <?= number_format($total['payment'],2) ?> <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
-                        <p class="info-text font-12">Total Income</p>
-                        <p class="info-ot font-15">This Year<span class="label label-rounded">P <?= number_format($year['payment'],2) ?></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <div class="row">
         <div class="col-md-9 col-sm-12">
@@ -77,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($subs as $row): ?>
+                        <?php foreach($subs as $row): ?>
                         <?php $now = strtotime(date('Y-m-d'));  $due_date = strtotime($row['due_date']); ?>
                             <?php if($due_date < $now): ?>
                             <tr>
@@ -89,7 +35,7 @@
                                 <td><span class='text-danger'><?= date('F d, Y', strtotime($row['due_date'])) ?></span> </td>
                                 <td><span class='label label-danger'>Unpaid</span></td>
                                 <td>
-                                    <span class="tooltip-danger" data-toggle="tooltip" title="Create Payment" onclick="showPment(this)" date-due="<?= $row['monthly'] ?>" data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
+                                    <span class="tooltip-danger" data-toggle="tooltip" title="Create Payment" onclick="showPmentC(this)" date-due="<?= $row['monthly'] ?>" data-id="<?= $row['acc_id'] ?>" data-account="<?= $row['account_name'] ?>">
                                         <a class="text-danger waves-effect waves-light m-l-5 m-t-5" href="#payModal" data-toggle="modal" >
                                             <i class="fa fa-product-hunt"></i>
                                         </a>
@@ -118,6 +64,25 @@
             </div>
         </div>
         <div class="col-md-3 col-sm-12">
+            <div class="row colorbox-group-widget">
+                <div class="col-md-12 col-sm-12 info-color-box">
+                    <div class="white-box">
+                        <div class="media bg-danger">
+                            <div class="media-body">
+                                <h3 class="info-count"><?php $no=0; foreach($subs as $row): ?>
+                            <?php $now = strtotime(date('Y-m-d'));  $due_date = strtotime($row['due_date']); ?>
+                                <?php if($due_date < $now):  $no++; ?><?php endif ?>
+                            <?php endforeach ?> <?= $no; ?><span class="pull-right"><i class="mdi  mdi-checkbox-marked-circle-outline"></i></span></h3>
+                        <p class="info-text font-12">Unpaid</p>
+                        <p class="info-ot font-15">Paid<span class="label label-rounded"> <?php $no=0; foreach($subs as $row): ?>
+                            <?php $now = strtotime(date('Y-m-d'));  $due_date = strtotime($row['due_date']); ?>
+                                <?php if($due_date > $now):  $no++; ?><?php endif ?>
+                            <?php endforeach ?> <?= $no; ?></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="white-box" >
                 <h3 class="box-title m-b-0">Latest Activity</h3>
                 <ul class="custom-timeline" >
@@ -126,8 +91,6 @@
                         <?php if(strpos($row['activity_type'] , 'New' ) !== False){
                             echo "<a class='text-success' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-success'>".timeago($row['created_at'])."</a>";
                         }elseif(strpos($row['activity_type'] ,'Update') !== False){
-                            echo "<a class='text-primary' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-primary'>".timeago($row['created_at'])."</a>";
-                        }elseif(strpos($row['activity_type'] ,'Approved') !== False){
                             echo "<a class='text-primary' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-primary'>".timeago($row['created_at'])."</a>";
                         }else{
                             echo "<a class='text-danger' href='javascript:void(0);'>".$row['activity_type']." - </a><a href='javascript:void(0);' class='float-right text-danger'>".timeago($row['created_at'])."</a>";
@@ -156,9 +119,6 @@
                             }
                          }
                     ?>
-                    <?php if(!in_groups('staff')): ?>
-                        <li><a href="<?= site_url('admin/activity') ?>">See all activity</a></li>
-                    <?php endif ?>
                 </ul>
             </div>
         </div>

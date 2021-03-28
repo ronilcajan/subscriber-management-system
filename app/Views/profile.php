@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3 col-xs-12">
             <div class="white-box">
-                <div class="user-bg"> <img width="100%" alt="user" src="<?= site_url() ?>images/logo.jpg">
+                <div class="user-bg"> <img width="100%" alt="user" src="<?= empty($info['logo']) ? site_url('images/logo.jpg') : site_url('uploads').'/'.$info['logo'] ?>">
                     <div class="overlay-box">
                         <div class="user-content">
                             <a href="javascript:void(0)">
@@ -98,7 +98,11 @@
                         </table>
                     </div>
                     <div class="tab-pane" id="profile">
-                        <form class="form-horizontal form-material" method="POST" action="<?= site_url('admin/update_profile') ?>" enctype="multipart/form-data">
+                        <?php if(in_groups('admin') || in_groups('staff')):?>
+                            <form class="form-horizontal form-material" method="POST" action="<?= site_url('admin/update_profile') ?>" enctype="multipart/form-data">
+                        <?php else: ?>
+                            <form class="form-horizontal form-material" method="POST" action="<?= site_url('collector/update_profile') ?>" enctype="multipart/form-data">
+                        <?php endif ?>
                             <div class="form-group">
                                 <label class="col-md-12">Profile Picture</label>
                                 <div class="col-md-3">
@@ -139,7 +143,13 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="settings">
-                        <form class="form-horizontal form-material" method="post" action="<?= site_url('admin/change_password') ?>">
+                        <?php if(in_groups('admin')):?>
+                            <form class="form-horizontal form-material" method="post" action="<?= site_url('admin/change_password') ?>">
+                        <?php elseif(in_groups('staff')):?>
+                            <form class="form-horizontal form-material" method="post" action="<?= site_url('staff/change_password') ?>">
+                        <?php else: ?>
+                            <form class="form-horizontal form-material" method="post" action="<?= site_url('collector/change_password') ?>">
+                        <?php endif ?>
                             <div class="form-group">
                                 <label class="col-md-12">Username</label>
                                 <div class="col-md-12">

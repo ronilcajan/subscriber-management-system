@@ -15,6 +15,7 @@
                             <i class="fa fa-angle-down"></i>
                         </span>
                     </a>
+                    <?php if(in_groups('admin') || in_groups('staff')): ?>
                     <ul class="dropdown-menu animated flipInY">
                         <li><a href="<?= site_url('admin/profile') ?>"><i class="fa fa-user"></i> Profile</a></li>
                         <li role="separator" class="divider"></li>
@@ -22,11 +23,26 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="<?= site_url('logout') ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
+                    <?php else: ?>
+                    <ul class="dropdown-menu animated flipInY">
+                        <li><a href="<?= site_url('collector/profile') ?>"><i class="fa fa-user"></i> Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="<?= site_url('collector/profile') ?>"><i class="fa fa-cog"></i> Account Settings</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="<?= site_url('logout') ?>"><i class="fa fa-power-off"></i> Logout</a></li>
+                    </ul>
+                    <?php endif ?>
                 </div>
-                <p class="profile-text m-t-15 font-16"><a href="<?= site_url('admin/profile') ?>"> <?= empty($result->name) ? $result->username : ucwords($result->name) ?> </a></p>
+                <?php if(in_groups('admin') || in_groups('staff')): ?>
+                    <p class="profile-text m-t-15 font-16"><a href="<?= site_url('admin/profile') ?>"> <?= empty($result->name) ? $result->username : ucwords($result->name) ?> </a></p>
+                <?php else: ?>
+                    <p class="profile-text m-t-15 font-16"><a href="<?= site_url('collector/profile') ?>"> <?= empty($result->name) ? $result->username : ucwords($result->name) ?> </a></p>
+                <?php endif ?>
+                
             </div>
         </div>
         <nav class="sidebar-nav">
+            <?php if(in_groups('admin')): ?>
             <ul id="side-menu">
                 <li>
                     <a href="<?= site_url('admin/dashboard') ?>" aria-expanded="false">
@@ -66,6 +82,38 @@
                     </a>
                 </li>
             </ul>
+            <?php elseif(in_groups('staff')): ?>
+            <ul id="side-menu">
+                <li>
+                    <a href="<?= site_url('admin/dashboard') ?>" aria-expanded="false">
+                        <i class="icon-grid fa-fw"></i> <span class="hide-menu"> Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                        <a href="<?= site_url('admin/subscribers') ?>" class="<?= strpos(uri_string(),'new_subscriber') || strpos(uri_string(),'subscriber') ? 'active' : null ?>" aria-expanded="false">
+                        <i class="icon-people fa-fw"></i> <span class="hide-menu"> Subscribers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= site_url('admin/accounts') ?>" class="<?= strpos(uri_string(),'new_account') || strpos(uri_string(),'account') ? 'active' : null ?>" aria-expanded="false">
+                        <i class="icon-user-following fa-fw"></i> <span class="hide-menu"> Accounts</span>
+                    </a>
+                </li>
+            </ul>
+            <?php else: ?>
+            <ul id="side-menu">
+                <li>
+                    <a href="<?= site_url('collector/dashboard') ?>" aria-expanded="false">
+                        <i class="icon-grid fa-fw"></i> <span class="hide-menu"> Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= site_url('collector/collections') ?>" class="<?= strpos(uri_string(),'new_account') || strpos(uri_string(),'account') ? 'active' : null ?>" aria-expanded="false">
+                        <i class="icon-user-following fa-fw"></i> <span class="hide-menu"> Collections</span>
+                    </a>
+                </li>
+            </ul>
+            <?php endif ?>
         </nav>
     </div>
 </aside>

@@ -4,6 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
+        
             <?= view('Myth\Auth\Views\_message_block') ?>
             <div class="panel panel-info">
                 <div class="panel-heading"><?= $title ?></div>

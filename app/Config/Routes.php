@@ -38,18 +38,18 @@ $routes->get('/', 'Home::index');
 $routes->get('admin', 'Home::index');
 $routes->add('success-login', 'Home::home');
 
+$routes->group('admin', ['filter' => 'role:admin,staff'], function($routes) {
+	$routes->add('', 'Admin\Dashboard::index');
+	$routes->add('dashboard', 'Admin\Dashboard::index');
 
-$routes->group('admin', function($routes) {
 	$routes->add('profile', 'Profile::index');
-
 	$routes->post('user_update', 'Admin\Users::update');
 	$routes->add('user_info/(:num)', 'Admin\Users::user_info/$1');
-
-	$routes->add('new_subscriber', 'Admin\Subscribers::new_subs');
-	$routes->post('add_subs', 'Admin\Subscribers::create');
 	$routes->post('update_profile', 'Profile::update');
 	$routes->post('change_password', 'Profile::changepass');
 
+	$routes->add('new_subscriber', 'Admin\Subscribers::new_subs');
+	$routes->post('add_subs', 'Admin\Subscribers::create');
 	$routes->add('subscriber/delete/(:num)', 'Admin\Subscribers::delete/$1');
 	$routes->add('subscriber/update/(:num)', 'Admin\Subscribers::edit/$1');
 	$routes->post('update_subs', 'Admin\Subscribers::update');
@@ -74,7 +74,26 @@ $routes->group('admin', function($routes) {
 
 	$routes->add('system_info', 'Admin\Dashboard::system');
 	$routes->post('updateSystem', 'Admin\Dashboard::updateSystem');
+
+	$routes->add('collections', 'Admin\Collections::index');
+	$routes->add('approve_transaction/(:num)', 'Admin\Collections::approve/$1');
 });
+
+$routes->group('collector', ['filter' => 'role:collector'], function($routes) {
+	$routes->add('', 'Admin\Dashboard::index');
+	$routes->add('dashboard', 'Admin\Dashboard::index');
+
+	$routes->add('profile', 'Profile::index');
+	$routes->post('user_update', 'Admin\Users::update');
+	$routes->post('update_profile', 'Profile::update');
+	$routes->post('change_password', 'Profile::changepass');
+
+	$routes->post('getPayment', 'Admin\Payments::getPayment');
+	$routes->post('paynow', 'Admin\Payments::paynow');
+
+	$routes->add('collections', 'Admin\Collections::index');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

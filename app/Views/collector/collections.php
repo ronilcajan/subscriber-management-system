@@ -10,7 +10,6 @@
                         <h4 class="box-title"><?= $title ?></h4>
                     </div>
                 </div>
-                <p class="text-muted m-b-20">List of transactions.</p>
                 <table  id="accountTable" class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -21,7 +20,6 @@
                             <th>Payment Date</th>
                             <th>Notes</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,11 +32,6 @@
                                 <td><?= date('F d, Y', strtotime($row['p_date'])) ?></td>
                                 <td><?= $row['notes'] ?></td>
                                 <td><?= $row['status']=='Pending' ? "<span class='label label-warning'>Pending</span>" : "<span class='label label-success'>Approved</span>" ?></td>
-                                <td>
-                                    <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success" href="<?= site_url('admin/approve_transaction/').$row['id']; ?>" data-toggle="tooltip" title="Approve Transaction">
-                                       <i class="icon-check"></i>
-                                    </a>
-                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -51,7 +44,6 @@
                             <th>Pament Date</th>
                             <th>Notes</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr> 
                     </tfoot>
                 </table>

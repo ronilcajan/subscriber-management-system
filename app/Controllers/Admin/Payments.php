@@ -12,6 +12,7 @@ class Payments extends BaseController
 {
 	public function index()
 	{
+		
 		$account = new AccountModel();
 		$data['subs'] = $account->select('*, accounts.id as acc_id, accounts.status as acc_status')
 						->join('subscribers', 'accounts.subscriber_id=subscribers.id')
@@ -69,15 +70,26 @@ class Payments extends BaseController
 				}else{
 					$noMonths = $this->diffMonths($this->request->getVar('paymentDue'), $acc['date_started']);
 				}
-				
-				$tran_details = [
-					'account_id' => $id,
-					'description' =>  $this->request->getVar('paymentDue'),
-					'notes' => $this->request->getVar('notes'),
-					'p_date' => $this->request->getVar('paymentDate'),
-					'no_months' => abs($noMonths),
-					'payment' =>  $this->request->getVar('totalPay'),
-				];
+				if(in_groups('admin')){
+					$tran_details = [
+						'account_id' => $id,
+						'description' =>  $this->request->getVar('paymentDue'),
+						'notes' => $this->request->getVar('notes'),
+						'p_date' => $this->request->getVar('paymentDate'),
+						'no_months' => abs($noMonths),
+						'payment' =>  $this->request->getVar('totalPay'),
+					];
+				}else{
+					$tran_details = [
+						'account_id' => $id,
+						'description' =>  $this->request->getVar('paymentDue'),
+						'notes' => $this->request->getVar('notes'),
+						'p_date' => $this->request->getVar('paymentDate'),
+						'status' => 'Pending',
+						'no_months' => abs($noMonths),
+						'payment' =>  $this->request->getVar('totalPay'),
+					];
+				}
 
 				$insert = $transac->save($tran_details);
 
