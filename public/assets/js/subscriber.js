@@ -70,3 +70,38 @@ function getDay(date) {
     return day;
 }
 
+// function customMonthly(){
+//     if (document.getElementById('m-5').checked) {
+//         document.getElementById('custom_m').style.visibility = 'visible';
+//     }
+//     else document.getElementById('custom_m').style.visibility = 'hidden';
+// }
+
+$(document).ready(function() {
+    $("input[name='monthly']").click(function () {
+        var value = this.value;
+        if (value == 'other') {
+          $("#custom_m").show();
+        }
+        else{
+            $("#custom_m").hide();
+            $("#custom_m").val('');
+        }
+        if (value == 'other1') {
+            $("#custom_m1").show();
+           
+        }
+        else{
+            $("#custom_m1").hide();
+            $("#custom_m1").val('');
+        }
+        if (value == 'other2') {
+            $("#custom_m2").show();
+        }
+        else{
+            $("#custom_m2").hide();
+            $("#custom_m2").val('');
+          }
+       
+     });
+  });

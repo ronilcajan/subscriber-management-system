@@ -11,3 +11,21 @@ function getTransactions(that){
     $('#amount').val(payment);
     $('#notes').val(notes);
 }
+
+$('#transacTable').DataTable({
+    responsive: true,
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    },
+    "order": [[ 0, "desc" ]]
+});
+
+$('#collectTable').DataTable({
+    responsive: true,
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    },
+    "order": [[ 0, "desc" ]]
+});

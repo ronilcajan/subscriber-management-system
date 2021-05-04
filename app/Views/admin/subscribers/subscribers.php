@@ -45,7 +45,7 @@
                                 <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success" href="<?= site_url('admin/subscriber/update/').$row['id']; ?>" data-toggle="tooltip" title="Edit Subscribers">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
-                                <a class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" href="<?= site_url('admin/subscriber/delete/').$row['id']; ?>" data-toggle="tooltip" title="Delete Subscribers">
+                                <a class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" onclick="return confirm('Are you sure you want to delete this subscriber?');" href="<?= site_url('admin/subscriber/delete/').$row['id']; ?>" data-toggle="tooltip" title="Delete Subscribers">
                                     <i class="fa fa fa-times"></i>
                                 </a>
                             </td>

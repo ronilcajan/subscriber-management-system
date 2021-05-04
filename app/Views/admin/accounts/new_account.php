@@ -82,14 +82,17 @@
                                     <div class="col-md-2 col-sm-6">
                                         <label>Monthly Subscription</label>
                                         <div class="form-group">
-                                            <input type="radio" required class="check" value="1000" id="m-1" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" required value="1000" id="m-1" name="monthly">
                                             <label for="m-1">1000</label><br>
-                                            <input type="radio" v class="check" value="1500" id="m-2" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" required value="1500" id="m-2" name="monthly" >
                                             <label for="m-2">1500</label><br>
-                                            <input type="radio" required class="check" value="2000" id="m-3" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" required value="2000" id="m-3" name="monthly" >
                                             <label for="m-3">2000</label><br>
-                                            <input type="radio" required class="check" value="3000" id="m-4" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" required value="3000" id="m-4" name="monthly" >
                                             <label for="m-4">3000</label><br>
+                                            <input type="radio" required value="other" id="m-5" name="monthly">
+                                            <label for="m-5">Other</label><br>
+                                            <input type="text" class="form-control" id="custom_m" name="custom" placeholder="Enter Monthly" style="display:none" />
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-6">
@@ -138,12 +141,15 @@
                                     <div class="col-md-2 col-sm-6">
                                         <label>Monthly Subscription</label>
                                         <div class="form-group">
-                                            <input type="radio" required class="check" value="1000" id="m-1" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-1">1000</label><br>
-                                            <input type="radio" required class="check" value="2500" id="m-2" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-2">2500</label><br>
-                                            <input type="radio" required class="check" value="3500" id="m-3" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-3">3500</label><br>
+                                            <input type="radio" required value="1000" id="mp-1" name="monthly">
+                                            <label for="mp-1">1500</label><br>
+                                            <input type="radio" required value="2500" id="mp-2" name="monthly">
+                                            <label for="mp-2">2500</label><br>
+                                            <input type="radio" required value="3500" id="mp-3" name="monthly">
+                                            <label for="mp-3">3500</label><br>
+                                            <input type="radio" required value="other1" id="mp-5" name="monthly">
+                                            <label for="mp-5">Other</label><br>
+                                            <input type="text" class="form-control" id="custom_m1" name="custom1" placeholder="Enter Monthly" style="display:none" />
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-6">
@@ -191,8 +197,11 @@
                                     <div class="col-md-2 col-sm-6">
                                         <label>Monthly Subscription</label>
                                         <div class="form-group">
-                                            <input type="radio" required class="check" value="300" id="m-1" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-1">300</label><br>
+                                            <input type="radio" required value="300" id="ml-1" name="monthly" >
+                                            <label for="ml-1">300</label><br>
+                                            <input type="radio" required value="other2" id="ml-5" name="monthly">
+                                            <label for="ml-5">Other</label><br>
+                                            <input type="text" class="form-control" id="custom_m2" name="custom2" placeholder="Enter Monthly" style="display:none" />
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-6">

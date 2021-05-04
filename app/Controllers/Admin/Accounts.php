@@ -111,6 +111,17 @@ class Accounts extends BaseController
 				$payment = new PaymentModel();
 
 				$subs_id = $this->request->getVar('subs_id');
+				$monthly = $this->request->getVar('monthly');
+
+				if($monthly == 'other'){
+					$monthly = $this->request->getVar('custom');
+				}
+				if($monthly == 'other1'){
+					$monthly = $this->request->getVar('custom1');
+				}
+				if($monthly == 'other2'){
+					$monthly = $this->request->getVar('custom2');
+				}
 
 				$new_acc = [
 					'subscriber_id' => $subs_id,
@@ -122,7 +133,7 @@ class Accounts extends BaseController
 					'due_date' => $this->request->getVar('due_date'),
 					'schedule' => date('d', strtotime($this->request->getVar('due_date'))),
 					'subs_option' => $this->request->getVar('options'),
-					'monthly' => $this->request->getVar('monthly'),
+					'monthly' => $monthly,
 					'device_user' => $this->request->getVar('device_user'),
 					'b_affiliates' => $this->request->getVar('business_aff'),
 					'speed' => $this->request->getVar('speed'),
@@ -200,6 +211,17 @@ class Accounts extends BaseController
 
 				$account = new AccountModel();
 				$payment = new PaymentModel();
+				$monthly = $this->request->getVar('monthly');
+
+				if($monthly == 'other'){
+					$monthly = $this->request->getVar('custom');
+				}
+				if($monthly == 'other1'){
+					$monthly = $this->request->getVar('custom1');
+				}
+				if($monthly == 'other2'){
+					$monthly = $this->request->getVar('custom2');
+				}
 
 				$acc = [
 					'id' => $id,
@@ -212,7 +234,7 @@ class Accounts extends BaseController
 					'due_date' => $this->request->getVar('due_date'),
 					'schedule' => date('d', strtotime($this->request->getVar('due_date'))),
 					'subs_option' => $this->request->getVar('options'),
-					'monthly' => $this->request->getVar('monthly'),
+					'monthly' => $monthly,
 					'device_user' => $this->request->getVar('device_user'),
 					'b_affiliates' => $this->request->getVar('business_aff'),
 					'speed' => $this->request->getVar('speed'),

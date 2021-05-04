@@ -61,7 +61,7 @@
                 </li>
                 <li>
                     <a class="waves-effect <?= strpos(uri_string(),'payments') || strpos(uri_string(),'transactions') || strpos(uri_string(),'collections') ? 'active' : null ?>" href="javascript:void(0);" aria-expanded="false">
-                        <i class="icon-wallet fa-fw"></i> <span class="hide-menu"> Payments </span></a>
+                        <i class="icon-wallet fa-fw"></i> <span class="hide-menu"> Payments <span class="label label-rounded label-primary pull-right">2</span></span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li> <a href="<?= site_url('admin/payments') ?>">View Payments</a> </li>
                         <li> <a href="<?= site_url('admin/transactions') ?>">Transactions</a> </li>
@@ -70,7 +70,7 @@
                 </li>
                 <li>
                     <a class="waves-effect <?= strpos(uri_string(),'activity') || strpos(uri_string(),'attempts') ? 'active' : null ?>" href="javascript:void(0);" aria-expanded="false">
-                        <i class="icon-globe fa-fw"></i> <span class="hide-menu"> Activity Logs</span></a>
+                        <i class="icon-globe fa-fw"></i> <span class="hide-menu"> Activity Logs <span class="label label-rounded label-primary pull-right">2</span></span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li> <a href="<?= site_url('admin/activity') ?>">System Activity</a> </li>
                         <li> <a href="<?= site_url('admin/attempts') ?>">Login Attempts</a> </li>

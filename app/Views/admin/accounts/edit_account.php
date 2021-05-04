@@ -90,14 +90,24 @@
                                     <div class="col-md-2 col-sm-6">
                                         <label>Monthly Subscription</label>
                                         <div class="form-group">
-                                            <input type="radio" <?= $acc['monthly']=='1000' && $acc['subs_option']=='1' ? 'checked' : null ?> required class="check" value="1000" id="m-1" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" <?= $acc['monthly']=='1000' && $acc['subs_option']=='1' ? 'checked' : null ?> required value="1000" id="m-1" name="monthly">
                                             <label for="m-1">1000</label><br>
-                                            <input type="radio" <?= $acc['monthly']=='1500' && $acc['subs_option']=='1' ? 'checked' : null ?> class="check" value="1500" id="m-2" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" <?= $acc['monthly']=='1500' && $acc['subs_option']=='1' ? 'checked' : null ?> required value="1500" id="m-2" name="monthly">
                                             <label for="m-2">1500</label><br>
-                                            <input type="radio" <?= $acc['monthly']=='2000' && $acc['subs_option']=='1' ? 'checked' : null ?> required class="check" value="2000" id="m-3" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" <?= $acc['monthly']=='2000' && $acc['subs_option']=='1' ? 'checked' : null ?> required value="2000" id="m-3" name="monthly">
                                             <label for="m-3">2000</label><br>
-                                            <input type="radio" <?= $acc['monthly']=='3000' && $acc['subs_option']=='1' ? 'checked' : null ?> required class="check" value="3000" id="m-4" name="monthly" data-radio="iradio_square-blue">
+                                            <input type="radio" <?= $acc['monthly']=='3000' && $acc['subs_option']=='1' ? 'checked' : null ?> required value="3000" id="m-4" name="monthly">
                                             <label for="m-4">3000</label><br>
+                                            
+                                            <?php if($acc['monthly']!='1000' && $acc['monthly']!='1500' && $acc['monthly']!='2000' && $acc['monthly']!='3000' && $acc['subs_option']=='1'): ?>
+                                                <input type="radio" required value="other" checked id="m-5" name="monthly">
+                                                <label for="m-5">Other</label><br>
+                                                <input type="text" class="form-control" id="custom_m" name="custom" placeholder="Enter Monthly" value="<?= $acc['monthly'] ?>" />
+                                            <?php else: ?>
+                                                <input type="radio" required value="other" id="m-5" name="monthly">
+                                                <label for="m-5">Other</label><br>
+                                                <input type="text" class="form-control" id="custom_m" name="custom" placeholder="Enter Monthly" style="display:none" />
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-6">
@@ -146,12 +156,22 @@
                                     <div class="col-md-2 col-sm-6">
                                         <label>Monthly Subscription</label>
                                         <div class="form-group">
-                                            <input type="radio" <?= $acc['monthly']=='1000' && $acc['subs_option']=='2' ? 'checked' : null ?> required class="check" value="1000" id="m-1" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-1">1000</label><br>
-                                            <input type="radio" <?= $acc['monthly']=='2500' && $acc['subs_option']=='2' ? 'checked' : null ?> required class="check" value="2500" id="m-2" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-2">2500</label><br>
-                                            <input type="radio" <?= $acc['monthly']=='3500' && $acc['subs_option']=='2' ? 'checked' : null ?> required class="check" value="3500" id="m-3" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-3">3500</label><br>
+                                            <input type="radio" <?= $acc['monthly']=='1500' && $acc['subs_option']=='2' ? 'checked' : null ?> required value="1000" id="mp-1" name="monthly">
+                                            <label for="mp-1">1500</label><br>
+                                            <input type="radio" <?= $acc['monthly']=='2500' && $acc['subs_option']=='2' ? 'checked' : null ?> required value="2500" id="mp-2" name="monthly">
+                                            <label for="mp-2">2500</label><br>
+                                            <input type="radio" <?= $acc['monthly']=='3500' && $acc['subs_option']=='2' ? 'checked' : null ?> required value="3500" id="mp-3" name="monthly">
+                                            <label for="mp-3">3500</label><br>
+
+                                            <?php if($acc['monthly']!='1500' && $acc['monthly']!='2500' && $acc['monthly']!='3500' && $acc['subs_option']=='2'): ?>
+                                                <input type="radio" required value="other1" checked id="mp-5" name="monthly">
+                                                <label for="mp-5">Other</label><br>
+                                                <input type="text" class="form-control" id="custom_m1" name="custom1" placeholder="Enter Monthly" value="<?= $acc['monthly'] ?>" />
+                                            <?php else: ?>
+                                                <input type="radio" required value="other1" id="mp-5" name="monthly">
+                                                <label for="mp-5">Other</label><br>
+                                                <input type="text" class="form-control" id="custom_m1" name="custom1" placeholder="Enter Monthly" style="display:none" />
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-6">
@@ -199,8 +219,18 @@
                                     <div class="col-md-2 col-sm-6">
                                         <label>Monthly Subscription</label>
                                         <div class="form-group">
-                                            <input type="radio" <?= $acc['monthly']=='300' && $acc['subs_option']=='3' ? 'checked' : null ?> required class="check" value="300" id="m-1" name="monthly" data-radio="iradio_square-blue">
-                                            <label for="m-1">300</label><br>
+                                            <input type="radio" <?= $acc['monthly']=='300' && $acc['subs_option']=='3' ? 'checked' : null ?> required value="300" id="ml-1" name="monthly">
+                                            <label for="ml-1">300</label><br>
+
+                                            <?php if($acc['monthly']!='300' && $acc['subs_option']=='3'): ?>
+                                                <input type="radio" required value="other2" checked id="ml-5" name="monthly">
+                                                <label for="ml-5">Other</label><br>
+                                                <input type="text" class="form-control" id="custom_m2" name="custom2" placeholder="Enter Monthly" value="<?= $acc['monthly'] ?>" />
+                                            <?php else: ?>
+                                                <input type="radio" required value="other2" id="ml-5" name="monthly">
+                                                <label for="ml-5">Other</label><br>
+                                                <input type="text" class="form-control" id="custom_m2" name="custom2" placeholder="Enter Monthly" style="display:none" />
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-6">

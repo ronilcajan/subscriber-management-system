@@ -46,7 +46,7 @@
                                     <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success" href="<?= site_url('admin/update_account/').$row['acc_id']; ?>" data-toggle="tooltip" title="Edit Account">
                                         <i class="fa fa-pencil-square-o"></i>
                                     </a>
-                                    <a class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" href="<?= site_url('admin/account/delete/').$row['acc_id']; ?>" data-toggle="tooltip" title="Delete Account">
+                                    <a class="text-danger waves-effect waves-light m-l-5 m-t-5 tooltip-danger" onclick="return confirm('Are you sure you want to delete this account?');" href="<?= site_url('admin/account/delete/').$row['acc_id']; ?>" data-toggle="tooltip" title="Delete Account">
                                         <i class="fa fa fa-times"></i>
                                     </a>
                                 </td>

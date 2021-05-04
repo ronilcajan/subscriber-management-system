@@ -121,6 +121,18 @@ class Subscribers extends BaseController
 				$insert = $subscriber->save($new_subs);
 				$subs_id = $subscriber->insertID;
 
+				$monthly = $this->request->getVar('monthly');
+
+				if($monthly == 'other'){
+					$monthly = $this->request->getVar('custom');
+				}
+				if($monthly == 'other1'){
+					$monthly = $this->request->getVar('custom1');
+				}
+				if($monthly == 'other2'){
+					$monthly = $this->request->getVar('custom2');
+				}
+
 				if($insert){
 
 					$new_acc = [
@@ -133,7 +145,7 @@ class Subscribers extends BaseController
 						'due_date' => $this->request->getVar('due_date'),
 						'schedule' => date('d', strtotime($this->request->getVar('due_date'))),
 						'subs_option' => $this->request->getVar('options'),
-						'monthly' => $this->request->getVar('monthly'),
+						'monthly' => $monthly,
 						'device_user' => $this->request->getVar('device_user'),
 						'b_affiliates' => $this->request->getVar('business_aff'),
 						'speed' => $this->request->getVar('speed'),
@@ -241,31 +253,6 @@ class Subscribers extends BaseController
 				$update = $subscriber->save($subs);
 
 				if($update){
-
-					$acc = [
-						'id' => $this->request->getVar('acc_id'),
-						'account_name' => $this->request->getVar('account_name'),
-						'area_coverage' => $this->request->getVar('area_coverage'),
-						'google_coordinate' => $this->request->getVar('google_coor'),
-						'antenna_model' => $this->request->getVar('antenna'),
-						'date_started' => $this->request->getVar('date_started'),
-						'due_date' => $this->request->getVar('due_date'),
-						'schedule' => date('d', strtotime($this->request->getVar('due_date'))),
-						'subs_option' => $this->request->getVar('options'),
-						'monthly' => $this->request->getVar('monthly'),
-						'device_user' => $this->request->getVar('device_user'),
-						'b_affiliates' => $this->request->getVar('business_aff'),
-						'speed' => $this->request->getVar('speed'),
-						'updated_at' => date('y-n-j G:i:s')
-					];
-
-					$account->save($acc);
-
-					$p_acc = [
-						'due_date' => $this->request->getVar('due_date'),
-					];
-
-					$payment->set($p_acc)->where('account_id', $this->request->getVar('acc_id'))->update();
 
 					return redirect()->back()->with('message', 'Subscriber has been updated!');
 				}

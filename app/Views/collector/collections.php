@@ -10,7 +10,7 @@
                         <h4 class="box-title"><?= $title ?></h4>
                     </div>
                 </div>
-                <table  id="accountTable" class="table table-striped table-sm">
+                <table  id="collectTable" class="table table-striped table-sm">
                     <thead>
                         <tr>
                             <th>Transaction ID.</th>

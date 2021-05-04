@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <p class="text-muted m-b-20">List of transactions.</p>
-                <table  id="accountTable" class="table table-striped table-sm">
+                <table id="transacTable" class="table table-striped table-sm">
                     <thead>
                         <tr>
                             <th>Transaction ID.</th>

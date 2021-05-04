@@ -3,7 +3,7 @@ $('#accountTable').DataTable({
     language: {
         search: "_INPUT_",
         searchPlaceholder: "Search..."
-    }
+    },
 });
 $('#acctransactionTable').DataTable({
     responsive: true,
