@@ -51,8 +51,6 @@ class Subscribers extends BaseController
 				'name'  	=> 'required',
 				'phone' 	=> 'required',
 				'email' 	=> 'required|valid_email|is_unique[subscribers.email]',
-				'fb_name' 	=> 'required',
-				'fb_url' 	=> 'required|valid_url',
 				'street' 	=> 'required',
 				'city' 	=> 'required',
 				'province' 	=> 'required',

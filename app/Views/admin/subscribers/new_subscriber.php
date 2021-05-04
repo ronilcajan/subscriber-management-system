@@ -107,7 +107,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="control-label">Due Date</label>
-                                            <input type="text" onchange="calculateDay(this)" id="due_date" name="due_date" required value="<?= old('due_date') ?>" readonly class="form-control" placeholder="mm/dd/yyyy"></div>
+                                            <input type="text" onchange="calculateDay(this)" id="due_date" name="due_date" required value="<?= old('due_date') ?>" class="form-control" placeholder="mm/dd/yyyy"></div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
