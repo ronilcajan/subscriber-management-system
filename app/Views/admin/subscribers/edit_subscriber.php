@@ -35,7 +35,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="control-label">Facebook Name</label>
-                                            <input type="text" required id="fb_name" value="<?= $subs['fb_name'] ?>" name="fb_name" class="form-control"></div>
+                                            <input type="text" id="fb_name" value="<?= $subs['fb_name'] ?>" name="fb_name" class="form-control"></div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -56,14 +56,14 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Street</label>
-                                            <input type="text" required name="street" class="form-control" value="<?= $subs['street'] ?>"> </div>
+                                            <input type="text" name="street" class="form-control" value="<?= $subs['street'] ?>"> </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>City</label>
-                                            <input type="text" required name="city" value="<?= $subs['city'] ?>" class="form-control"> </div>
+                                            <input type="text" name="city" value="<?= $subs['city'] ?>" class="form-control"> </div>
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">

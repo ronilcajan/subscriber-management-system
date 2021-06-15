@@ -49,12 +49,12 @@
     </div>
        <div id="home"></div>
     <div class="ournet-inter-area">
-       <header id="header" class="header-area">
+       <header id="header" class="header-area" style="background-color:black">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-3">
                         <div class="logo">
-                            <a href="/"><img width="100" src="<?= empty($result->logo) ? site_url().'images/logo.jpg' : site_url('uploads/').$result->logo ?>" alt=""></a>
+                            <a href="/"><img width="50" src="<?= empty($result->logo) ? site_url().'images/logo.jpg' : site_url('uploads/').$result->logo ?>" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-8 col-9">
@@ -113,9 +113,9 @@
                     <div class="col-lg-6">
                         <div class="about-text">
                             <h1 class="mb-20px">About Us</h1>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
-                            <p class="mb-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodnsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <a href="#" class="ournet-btn">Read More</a>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
+                            <p class="mb-30px">Unlimited data/bandwidth is our prime immolation to foster your online experience.</p>
+                            <a href="https://www.facebook.com/WAGA-Network-169498757046275" class="ournet-btn">Find More</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -184,42 +184,42 @@
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Unlimited Package</h4>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-2.png" alt="">
                             <h4>Dedicated IP Server</h4>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-3.png" alt="">
                             <h4>Fiver Optic Network</h4>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-1.png" alt="">
                             <h4>Stable Connections</h4>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-5.png" alt="">
                             <h4>Buffer Free Browsing</h4>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-item mb-30px">
                             <img src="home_files/assets/images/feature-6.png" alt="">
                             <h4>24/7 Customer Support</h4>
-                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                            <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
                         </div>
                     </div>
                 </div>
@@ -324,8 +324,8 @@
                                 <div class="col-lg-5">
                                     <div class="abpi-t">
                                         <h4>We'll help you get back to work</h4>
-                                        <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a privately held 4G wireless broadband operator. It uses WiMAX technology.</p>
-                                        <a class="ournet-btn" href="#">Learn More</a>
+                                        <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs with 6 years of experience.</p>
+                                        <a class="ournet-btn" href="https://www.facebook.com/WAGA-Network-169498757046275">Learn More</a>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@
                                 </div>
                                 <p>‘’<?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
                                 <h3>Farnando Toress</h3>
-                                <span>Student</span>
+                                <span>Client</span>
                             </div>
                             <div class="testimonial-item text-center">
                                 <div class="quate">
@@ -356,7 +356,7 @@
                                 </div>
                                 <p>‘’<?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is very economical.You do not need to buy any special service.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.”</p>
                                 <h3>Farnando Toress</h3>
-                                <span>Student</span>
+                                <span>Client</span>
                             </div>
                         </div>
                     </div>
@@ -385,7 +385,7 @@
                                <div class="footer-logo">
                                    <a href="#"><img width="150" src="<?= empty($result->logo) ? site_url().'images/logo.jpg' : site_url('uploads/').$result->logo ?>" alt=""></a>
                                </div>
-                               <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a private broadband internet service provider  with 12 years of experience.</p>
+                               <p><?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?> is a wireless solution services for your internet needs. Unlimited data/bandwidth is our prime immolation to foster your online experience.</p>
                            </div>
                        </div>
                        <div class="col-lg-2 offset-lg-1 col-md-6">
@@ -440,12 +440,12 @@
                    <div class="row">
                        <div class="col-md-6">
                             <div class="footer-copyright-item">
-                                <p>Copyright &copy; 2021 <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?>. Design & Developed By <a class="footer-links" href="#">R Labs</a>.</p>
+                                <p>Copyright &copy; 2021 <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?>. Design & Developed By <a class="footer-links" href="http://ronilcajan.ml" target="_blank">Ron</a>.</p>
                             </div>
                        </div>
                        <div class="col-md-6">
                             <div class="social text-right">
-                                 <a href="#"><i class="ti-facebook"></i></a>
+                                 <a href="https://www.facebook.com/WAGA-Network-169498757046275"><i class="ti-facebook"></i></a>
                                  <!-- <a href="#"><i class="ti-instagram"></i></a>
                                  <a href="#"><i class="ti-linkedin"></i></a> -->
                              </div>

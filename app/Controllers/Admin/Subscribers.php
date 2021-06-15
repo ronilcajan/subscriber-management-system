@@ -4,6 +4,7 @@ use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\SubscriberModel;
 use App\Models\PaymentModel;
+use CodeIgniter\I18n\Time;
 
 class Subscribers extends BaseController
 {
@@ -21,6 +22,135 @@ class Subscribers extends BaseController
 	{
 		$data['title'] = "Create New Subscriber";
 		return view('admin/subscribers/new_subscriber',$data);
+	}
+
+	public function import()
+	{
+		// Validation
+		$input = $this->validate(['importFile' => 'ext_in[importFile,csv,xlsx],']);
+   
+		 if (!$input) {
+   
+			return redirect()->back()->withInput()->with('error', 'Invalid file!'); 
+			
+		 }else{ 
+   
+			if($file = $this->request->getFile('importFile')) {
+			   	if ($file->isValid() && ! $file->hasMoved()) {
+   
+					// Get random file name
+					$newName = $file->getRandomName();
+	
+					// Store file in public/csvfile/ folder
+					$file->move('../public/csvfile', $newName);
+	
+					// Reading file
+					$file = fopen("../public/csvfile/".$newName,"r");
+					$i = 0;
+	
+					$importSubs = array();
+	
+					// Initialize $importData_arr Array
+					while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+	
+						// Skip first row & check number of fields
+						if($i > 0){ 
+							
+							// Key names are the insert table field names - name, email, city, and status
+							$importSubs[$i]['name'] = $filedata[0];
+							$importSubs[$i]['phone'] = $filedata[1];
+							$importSubs[$i]['email'] = $filedata[2];
+							$importSubs[$i]['fb_name'] = $filedata[3];
+							$importSubs[$i]['fb_url'] = $filedata[4];
+							$importSubs[$i]['recommended_by'] = $filedata[5];
+							$importSubs[$i]['street'] = $filedata[6];
+							$importSubs[$i]['city'] = $filedata[7];
+							$importSubs[$i]['province'] = $filedata[8];
+							$importSubs[$i]['account_name'] = $filedata[9];
+							$importSubs[$i]['area'] = $filedata[10];
+							$importSubs[$i]['google'] = $filedata[11];
+							$importSubs[$i]['model'] = $filedata[12];
+							$importSubs[$i]['datestarted'] = $filedata[13];
+							$importSubs[$i]['duedate'] = $filedata[14];
+							$importSubs[$i]['option'] = $filedata[15];
+							$importSubs[$i]['monthly'] = $filedata[16];
+							$importSubs[$i]['device'] = $filedata[17];
+							$importSubs[$i]['affiliates'] = $filedata[18];
+							$importSubs[$i]['speed'] = $filedata[19];
+						}
+	
+						$i++;
+	
+					}
+					fclose($file);
+	
+					// Insert data
+					$count = 0;
+					foreach($importSubs as $data){
+
+						$subscriber = new SubscriberModel();
+						$account = new AccountModel();
+						$payment = new PaymentModel();
+						
+						$subs = array(
+							'name' => $data['name'],
+							'phone' => $data['phone'],
+							'email' => $data['email'],
+							'fb_name' => $data['fb_name'],
+							'fb_url' => $data['fb_url'],
+							'recommended_by' => $data['recommended_by'],
+							'street' => $data['street'],
+							'city' => $data['city'],
+							'province' => $data['province'],
+						);
+						
+						$insert = $subscriber->save($subs);
+						$subs_id = $subscriber->insertID;
+
+						$started = Time::createFromFormat('m-d-Y', $data['datestarted']);
+						$due = Time::createFromFormat('m-d-Y', $data['duedate']);
+
+						$acc = array(
+							'subscriber_id' => $subs_id,
+							'account_name' => $data['account_name'],
+							'area_coverage' => $data['area'],
+							'google_coordinate' => $data['google'],
+							'antenna_model' => $data['model'],
+							'date_started' => $started->format('m/d/Y'),
+							'due_date' => $due->format('m/d/Y'),
+							'schedule' => date('d', strtotime( $due->format('m/d/Y'))),
+							'subs_option' => $data['option'],
+							'monthly' => $data['monthly'],
+							'device_user' => $data['device'],
+							'b_affiliates' => $data['affiliates'],
+							'speed' => $data['speed']
+
+						);
+
+						$account->save($acc);
+						$acc_id = $account->insertID;
+
+						$p_acc = [
+							'account_id' => $acc_id,
+							'due_date' => $due->format('m/d/Y')
+						];
+
+						$payment->save($p_acc);
+						$count++;
+
+				  	}
+
+				  	return redirect()->back()->with('message', $count.' Record inserted successfully!');
+   
+			   	}else{
+					return redirect()->back()->withInput()->with('error', 'File not imported1!');
+			   	}
+
+			}else{
+				return redirect()->back()->withInput()->with('error', 'File not imported!');
+			}
+   
+		}
 	}
 
 	public function edit($id){
@@ -50,48 +180,18 @@ class Subscribers extends BaseController
 			$rules = [
 				'name'  	=> 'required',
 				'phone' 	=> 'required',
-				'email' 	=> 'required|valid_email|is_unique[subscribers.email]',
-				'street' 	=> 'required',
-				'city' 	=> 'required',
-				'province' 	=> 'required',
 				'account_name' 	=> 'required',
-				'area_coverage' 	=> 'required',
-				'date_started' 	=> 'required',
-				'options' 	=> 'required',
-				'monthly' 	=> 'required',
-				'device_user' 	=> 'required',
-				'business_aff' 	=> 'required',
-				'speed' 	=> 'required',
 			];
 			$errors = [
-				'fb_name' 	=> [
-					'required' => 'Subscriber facebook name is required.'
+				'name' 	=> [
+					'required' => 'Subscribers name is required.'
 				],
-				'fb_url' 	=> [
-					'required' => 'Facebook URL is required.',
-					'valid_url' => 'Facebook URL is invalid.',
+				'phone' 	=> [
+					'required' => 'Subscribers phone number is required.',
 				],
 				'account_name' 	=> [
 					'required' => 'Account name is required.',
 				],
-				'area_coverage' 	=> [
-					'required' => 'Area coverage is required.',
-				],
-				'options' 	=> [
-					'required' => 'Please select subscription options.',
-				],
-				'device_user' 	=> [
-					'required' => 'Please select device user.',
-				],
-				'business_aff' 	=> [
-					'required' => 'Please select business affiliate if yes or no.',
-				],
-				'speed' 	=> [
-					'required' => 'Please select the download and upload speed.',
-				],
-				'date_started' => [
-					'required' => 'Date started is required.'
-				]
 			];
 
 			if (!$this->validate($rules,$errors)) {
@@ -166,6 +266,7 @@ class Subscribers extends BaseController
 				
 			}
 		}
+
 		return redirect()->back()->withInput()->with('error', 'Submitted form is now allowed!');
 	}
 
@@ -178,50 +279,24 @@ class Subscribers extends BaseController
 			$rules = [
 				'name'  	=> 'required',
 				'phone' 	=> 'required',
-				'email' 	=> 'required|valid_email|is_unique[subscribers.email, id,'.$id.']',
-				'fb_name' 	=> 'required',
-				'fb_url' 	=> 'required|valid_url',
-				'street' 	=> 'required',
-				'city' 	=> 'required',
-				'province' 	=> 'required',
+				'email' 	=> 'required|valid_email|is_unique[subscribers.email]',
 				'account_name' 	=> 'required',
-				'area_coverage' 	=> 'required',
-				'options' 	=> 'required',
-				'monthly' 	=> 'required',
-				'device_user' 	=> 'required',
-				'business_aff' 	=> 'required',
-				'speed' 	=> 'required',
-				'date_started' => 'required'
 			];
 			$errors = [
-				'fb_name' 	=> [
-					'required' => 'Subscriber facebook name is required.'
+				'name' 	=> [
+					'required' => 'Subscribers name is required.'
 				],
-				'fb_url' 	=> [
-					'required' => 'Facebook URL is required.',
-					'valid_url' => 'Facebook URL is invalid.',
+				'phone' 	=> [
+					'required' => 'Subscribers phone number is required.',
+				],
+				'email' 	=> [
+					'required' => 'Subscribers email address is required.',
+					'valid_email' => 'Subscribers email address is invalid!',
+					'is_unique' => 'Email address is already in used!',
 				],
 				'account_name' 	=> [
 					'required' => 'Account name is required.',
 				],
-				'area_coverage' 	=> [
-					'required' => 'Area coverage is required.',
-				],
-				'options' 	=> [
-					'required' => 'Please select subscription options.',
-				],
-				'device_user' 	=> [
-					'required' => 'Please select device user.',
-				],
-				'business_aff' 	=> [
-					'required' => 'Please select business affiliate if yes or no.',
-				],
-				'speed' 	=> [
-					'required' => 'Please select the download and upload speed.',
-				],
-				'date_started' => [
-					'required' => 'Date started is required.'
-				]
 			];
 
 			if (!$this->validate($rules,$errors)) {

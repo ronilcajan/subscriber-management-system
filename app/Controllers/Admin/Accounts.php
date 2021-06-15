@@ -66,13 +66,6 @@ class Accounts extends BaseController
 			$rules = [
 				'subs_id' => 'required',
 				'account_name' 	=> 'required',
-				'area_coverage' => 'required',
-				'options' 	=> 'required',
-				'monthly' 	=> 'required',
-				'device_user' 	=> 'required',
-				'business_aff' 	=> 'required',
-				'speed' 	=> 'required',
-				'date_started' 	=> 'required',
 			];
 			$errors = [
 				'subs_id' 	=> [
@@ -81,24 +74,6 @@ class Accounts extends BaseController
 				'account_name' 	=> [
 					'required' => 'Account name is required.',
 				],
-				'area_coverage' 	=> [
-					'required' => 'Area coverage is required.',
-				],
-				'options' 	=> [
-					'required' => 'Please select subscription options.',
-				],
-				'device_user' 	=> [
-					'required' => 'Please select device user.',
-				],
-				'business_aff' 	=> [
-					'required' => 'Please select business affiliate if yes or no.',
-				],
-				'speed' 	=> [
-					'required' => 'Please select the download and upload speed.',
-				],
-				'date_started' => [
-					'required' => 'Date started is required.'
-				]
 			];
 
 			if (!$this->validate($rules,$errors)) {
@@ -168,13 +143,6 @@ class Accounts extends BaseController
 			$rules = [
 				'subs_id' => 'required',
 				'account_name' 	=> 'required',
-				'area_coverage' => 'required',
-				'options' 	=> 'required',
-				'monthly' 	=> 'required',
-				'device_user' 	=> 'required',
-				'business_aff' 	=> 'required',
-				'speed' 	=> 'required',
-				'date_started' 	=> 'required',
 			];
 			$errors = [
 				'subs_id' 	=> [
@@ -183,24 +151,6 @@ class Accounts extends BaseController
 				'account_name' 	=> [
 					'required' => 'Account name is required.',
 				],
-				'area_coverage' 	=> [
-					'required' => 'Area coverage is required.',
-				],
-				'options' 	=> [
-					'required' => 'Please select subscription options.',
-				],
-				'device_user' 	=> [
-					'required' => 'Please select device user.',
-				],
-				'business_aff' 	=> [
-					'required' => 'Please select business affiliate if yes or no.',
-				],
-				'speed' 	=> [
-					'required' => 'Please select the download and upload speed.',
-				],
-				'date_started' => [
-					'required' => 'Date started is required.'
-				]
 			];
 
 			if (!$this->validate($rules,$errors)) {

@@ -7,8 +7,13 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= site_url() ?>/plugins/images/favicon.png">
-    <title>Waga Network Solutions - SMS</title>
+    
+    <?php $db = db_connect();
+    $query = $db->query("SELECT `icon`,`name` FROM system_info WHERE id=1");
+    $result = $query->getRow();
+    ?>
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= empty($result->icon) ? site_url().'images/logo-transparent.png' : site_url('uploads/').$result->icon ?>">
+    <title>Authentication | <?= empty($result->name) ? 'Waga Network Solutions' : $result->name ?></title>
     <!-- ===== Bootstrap CSS ===== -->
     <link href="<?= site_url() ?>/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- ===== Plugin CSS ===== -->

@@ -35,7 +35,7 @@
                                 <td><a href="<?= site_url('admin/subscriber_info/').$row['subscriber_id'] ?>"><?= $row['name'] ?></a></td>
                                 <td>P <?= number_format($row['monthly'],2) ?></td>
                                 <td><?= $row['schedule'] ?>th day</td>
-                                <td><?= empty($row['date_paid']) ? date('F d, Y', strtotime($row['date_started'])) : date('F d, Y', strtotime($row['date_paid'])) ?></td>
+                                <td><?= empty($row['date_paid']) ? empty($row['date_started']) ? null : date('F d, Y', strtotime($row['date_started'])) : date('F d, Y', strtotime($row['date_paid'])) ?></td>
                                 <td>
                                     <?php 
                                         $now = strtotime(date('Y-m-d'));
@@ -72,9 +72,18 @@
                                         </a>
                                     </span>
                                     <?php endif ?>
-                                    <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success sendEmail" href="<?= site_url('admin/send_email/').$row['acc_id']; ?>" data-toggle="tooltip" title="Send Email Notification">
-                                        <i class="fa fa-envelope-o"></i>
-                                    </a>
+                                    
+                                    <?php 
+                                        $accID = $row['acc_id'];
+                                        $db = db_connect();
+                                        $query = $db->query("SELECT email FROM accounts JOIN subscribers ON accounts.subscriber_id=subscribers.id WHERE accounts.id=$accID");
+                                        $result = $query->getRow();
+                                    ?>
+                                    <?php if(!empty($result->email)): ?>
+                                        <a class="text-success waves-effect waves-light m-l-5 m-t-5 tooltip-success sendEmail" href="<?=  site_url('admin/send_email/').$row['acc_id']; ?>" data-toggle="tooltip" title="Send Email Notification">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </a>
+                                    <?php endif ?>
                                 </td>
                             </tr>
                         <?php $no++; endforeach ?>

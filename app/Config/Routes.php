@@ -55,6 +55,7 @@ $routes->group('admin', ['filter' => 'role:admin,staff'], function($routes) {
 	$routes->post('update_subs', 'Admin\Subscribers::update');
 	$routes->post('changeSubsStatus', 'Admin\Subscribers::changeStatus');
 	$routes->add('subscriber_info/(:num)', 'Admin\Subscribers::profile/$1');
+	$routes->post('importFile', 'Admin\Subscribers::import');
 
 	$routes->add('new_account', 'Admin\Accounts::new_account');
 	$routes->post('add_account', 'Admin\Accounts::create');

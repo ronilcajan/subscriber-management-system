@@ -7,7 +7,7 @@ class ProfileModel extends Model{
 
     protected $table = 'user_profile';
     protected $primaryKey = 'id';
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
     protected $allowedFields = ['id','user_id','name','address','phone','img','updated_at'];
     protected $deletedField  = 'deleted_at';
 

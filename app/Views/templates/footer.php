@@ -13,6 +13,7 @@
 <script src="<?= site_url() ?>plugins/components/icheck/icheck.init.js"></script>
 <!-- ===== Custom JavaScript ===== -->
 <script src="<?= site_url() ?>assets/js/custom.js"></script>
+<script src="<?= site_url() ?>assets/js/jasny-bootstrap.js"></script>
 <!-- ===== Style Switcher JS ===== -->
 <script src="<?= site_url() ?>plugins/components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="<?= site_url() ?>plugins/components/switchery/dist/switchery.min.js"></script>
@@ -39,6 +40,7 @@
         new Switchery($(this)[0], $(this).data());
     });
 </script>
+
 <script src="<?= site_url() ?>plugins/components/styleswitcher/jQuery.style.switcher.js"></script>
 
 <script src="<?= site_url() ?>assets/js/users.js"></script>

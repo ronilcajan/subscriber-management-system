@@ -157,7 +157,7 @@ class AuthController extends Controller
 			'role' 	=> 'required',
 		];
 		$errors = [
-			'pass_confirm' 	=> [
+			'password' 	=> [
 				'matches' => 'Password did not match.'
 			],
 			'role' 	=> [
